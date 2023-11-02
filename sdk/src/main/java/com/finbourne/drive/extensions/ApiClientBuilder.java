@@ -19,12 +19,12 @@ public class ApiClientBuilder {
 
     /**
     * Builds an ApiClient implementation configured against a secrets file. Typically used
-    * for communicating with lusidDrive via the APIs
+    * for communicating with drive via the APIs
     *
     * ApiClient implementation enables use of REFRESH tokens (see https://support.finbourne.com/using-a-refresh-token)
     * and automatically handles token refreshing on expiry.
     *
-    * @param apiConfiguration configuration to connect to lusidDrive API
+    * @param apiConfiguration configuration to connect to drive API
     * @return
     *
     * @throws FinbourneTokenException on failing to authenticate and retrieve an initial {@link FinbourneToken}
@@ -37,7 +37,7 @@ public class ApiClientBuilder {
     /**
      * Builds an ApiClient implementation configured against a secrets file.
      * Typically used
-     * for communicating with lusidDrive via the APIs
+     * for communicating with drive via the APIs
      *
      * ApiClient implementation enables use of REFRESH tokens (see
      * https://support.finbourne.com/using-a-refresh-token)
@@ -58,7 +58,7 @@ public class ApiClientBuilder {
         /**
      * Builds an ApiClient implementation configured against a secrets file.
      * Typically used
-     * for communicating with lusidDrive via the APIs
+     * for communicating with drive via the APIs
      *
      * ApiClient implementation enables use of REFRESH tokens (see
      * https://support.finbourne.com/using-a-refresh-token)
@@ -77,12 +77,12 @@ public class ApiClientBuilder {
 
     /**
      * Builds an ApiClient implementation configured against a secrets file. Typically used
-     * for communicating with lusidDrive via the APIs
+     * for communicating with drive via the APIs
      *
      * ApiClient implementation enables use of REFRESH tokens (see https://support.finbourne.com/using-a-refresh-token)
      * and automatically handles token refreshing on expiry.
      *
-     * @param apiConfiguration configuration to connect to lusidDrive API
+     * @param apiConfiguration configuration to connect to drive API
      * @param retryMaxAttempts number of times to try to make request when rate limited
      * @param httpClientBuilder {@link Builder} with some configuration already
      *                          set

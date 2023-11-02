@@ -7,16 +7,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-* Utility class that builds pre-configured lusidDrive API instances to access lusidDrive.
+* Utility class that builds pre-configured drive API instances to access drive.
 *
 */
 public class ApiFactory {
 
 
     /**
-    * The unique package that hosts all the lusidDrive API classes
+    * The unique package that hosts all the drive API classes
     */
-    public static final String API_PACKAGE = "com.finbourne.lusid-drive.api";
+    public static final String API_PACKAGE = "com.finbourne.drive.api";
 
     private final ApiClient apiClient;
     private final Map<Class, Object> initialisedApis;
@@ -32,17 +32,17 @@ public class ApiFactory {
     }
 
     /**
-    * Builds an instance of a lusidDrive API 
+    * Builds an instance of a drive API 
     *
-    * For each instance of an {@link ApiFactory} only a singleton instance of each lusidDrive API class exist. The APIs
+    * For each instance of an {@link ApiFactory} only a singleton instance of each drive API class exist. The APIs
     * are lazily initialised on request.
     *
     *
-    * @param apiClass - class of the lusidDrive API to create
-    * @param <T> lusidDrive API type
-    * @return instance of the lusidDrive API type configured as per the {@link ApiClient}
+    * @param apiClass - class of the drive API to create
+    * @param <T> drive API type
+    * @return instance of the drive API type configured as per the {@link ApiClient}
     *
-    * @throws UnsupportedOperationException is the apiClass does not belong to the import com.finbourne.lusid-drive.api package or
+    * @throws UnsupportedOperationException is the apiClass does not belong to the import com.finbourne.drive.api package or
     * if the class has no constructor that accepts an {@link ApiClient} parameter.
     */
     public synchronized <T> T build(Class<T> apiClass) {
@@ -58,9 +58,9 @@ public class ApiFactory {
     };
 
     /*
-    * Create an instance of a lusidDrive API configured by an {@link ApiClient}
+    * Create an instance of a drive API configured by an {@link ApiClient}
     *
-    * @throws UnsupportedOperationException on any reflection related issues on constructing the lusidDrive API object
+    * @throws UnsupportedOperationException on any reflection related issues on constructing the drive API object
     */
     private <T> T createInstance(Constructor<T> constructor){
         try {
@@ -72,10 +72,10 @@ public class ApiFactory {
     }
 
     /*
-    * Retrieves the constructor for the lusidDrive API that accepts an {@link ApiClient}
+    * Retrieves the constructor for the drive API that accepts an {@link ApiClient}
     *
     * @throws UnsupportedOperationException if the class doesn't have a valid constructor that takes
-    * an {@link ApiClient} as an argument to ensure proper construction of a lusidDrive API instance.
+    * an {@link ApiClient} as an argument to ensure proper construction of a drive API instance.
     */
     private <T> Constructor<T> getApiConstructor(Class<T> apiClass){
         try {
@@ -87,9 +87,9 @@ public class ApiFactory {
     }
 
     /*
-    * Checks the class lives in the set package for lusidDrive API classes.
+    * Checks the class lives in the set package for drive API classes.
     *
-    * @throws UnsupportedOperationException if API class does not live in lusidDrive API package
+    * @throws UnsupportedOperationException if API class does not live in drive API package
     */
     private void checkIsSupportedApiClass(Class apiClass){
         if (!isInApiPackage(apiClass)) {

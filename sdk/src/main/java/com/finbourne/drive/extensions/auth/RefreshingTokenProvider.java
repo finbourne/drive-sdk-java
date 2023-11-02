@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 /**
 * Provides {@link FinbourneToken} used for API authentication and manages
-* token expiry to ensure continued connectivity to lusidDrive API without the need
+* token expiry to ensure continued connectivity to drive API without the need
 * for explicit reauthentication by the caller.
 *
 */
@@ -23,9 +23,9 @@ public class RefreshingTokenProvider {
 
     /**
     * Creates a KeepAuthTokenProvider based on an underlying token provider
-    * that manages direct authentication with lusidDrive.
+    * that manages direct authentication with drive.
     *
-    * @param httpFinbourneTokenProvider underlying provider that manages explicit authentication calls to lusidDrive
+    * @param httpFinbourneTokenProvider underlying provider that manages explicit authentication calls to drive
     */
     public RefreshingTokenProvider(HttpFinbourneTokenProvider httpFinbourneTokenProvider) {
         this.httpFinbourneTokenProvider = httpFinbourneTokenProvider;
