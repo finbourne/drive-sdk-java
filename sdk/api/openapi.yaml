@@ -1,0 +1,2355 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: info@finbourne.com
+    name: FINBOURNE Technology
+    url: https://www.finbourne.com
+  termsOfService: https://www.finbourne.com/legal/terms-conditions
+  title: FINBOURNE Drive API
+  version: 0.1.591
+  x-logo:
+    url: https://www.lusid.com/app/assets/logo_white.png
+    backgroundColor: '#415464'
+servers:
+- url: https://fbn-ci.lusid.com/drive
+security:
+- {}
+tags:
+- description: Metadata about the application
+  name: Application Metadata
+- description: Methods for interacting with the files endpoints in Lusid drive
+  name: Files
+- description: Methods for interacting with the folders endpoints in Lusid drive
+  name: Folders
+- description: Method to search files and folders
+  name: Search
+paths:
+  /api/files:
+    post:
+      operationId: CreateFile
+      parameters:
+      - description: File name.
+        explode: false
+        in: header
+        name: x-lusid-drive-filename
+        required: true
+        schema:
+          maxLength: 256
+          minLength: 1
+          pattern: "^[A-Za-z0-9_\\-\\.]+[A-Za-z0-9_\\-\\. ]*$"
+          type: string
+        style: simple
+      - description: File path.
+        explode: false
+        in: header
+        name: x-lusid-drive-path
+        required: true
+        schema:
+          maxLength: 512
+          minLength: 1
+          pattern: "^[\\/a-zA-Z0-9 \\-_]+$"
+          type: string
+        style: simple
+      - description: The size in bytes of the file to be uploaded
+        explode: false
+        in: header
+        name: Content-Length
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: byte
+              type: string
+        required: true
+      responses:
+        "201":
+          content:
+            text/plain:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            application/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            text/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+          description: Created
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] CreateFile: Uploads a file to Lusid Drive. If using\
+        \ an SDK, consider using the UploadAsStreamAsync function for larger files\
+        \ instead."
+      tags:
+      - Files
+      x-fbn-apistatus: EarlyAccess
+      x-content-type: application/octet-stream
+      x-accepts: application/json
+  /api/files/{id}:
+    delete:
+      operationId: DeleteFile
+      parameters:
+      - description: Identifier of the file to be deleted.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] DeleteFile: Deletes a file from Drive."
+      tags:
+      - Files
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+    get:
+      operationId: GetFile
+      parameters:
+      - description: Identifier of the file to be retrieved.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            application/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            text/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] GetFile: Get a file stored in Drive."
+      tags:
+      - Files
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+    put:
+      operationId: UpdateFileMetadata
+      parameters:
+      - description: Identifier of the file to be updated
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              path: /New/parent/folder/path
+              name: new-file-name
+            schema:
+              $ref: '#/components/schemas/UpdateFile'
+        description: Update to be applied to file
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            application/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            text/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] UpdateFileMetadata: Updates metadata for a file in\
+        \ Drive."
+      tags:
+      - Files
+      x-fbn-apistatus: EarlyAccess
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/files/{id}/contents:
+    get:
+      operationId: DownloadFile
+      parameters:
+      - description: Identifier of the file to be downloaded.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Success
+        "410":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: "Malware detected, restricted from downloading file."
+        "423":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: "Virus scan in progress, restricted from downloading file."
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] DownloadFile: Download the file from Drive."
+      tags:
+      - Files
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+    put:
+      operationId: UpdateFileContents
+      parameters:
+      - description: The unique file identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      - description: The size in bytes of the file to be uploaded
+        explode: false
+        in: header
+        name: Content-Length
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: byte
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            application/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            text/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] UpdateFileContents: Updates contents of a file in Drive."
+      tags:
+      - Files
+      x-fbn-apistatus: EarlyAccess
+      x-content-type: application/octet-stream
+      x-accepts: application/json
+  /api/folders:
+    get:
+      operationId: GetRootFolder
+      parameters:
+      - description: "The pagination token to use to continue listing contents from\
+          \ a previous call to list contents.\r\n This value is returned from the\
+          \ previous call. If a pagination token is provided the sortBy and filter\
+          \ fields\r\n must not have changed since the original request. Also, if\
+          \ set, a start value cannot be provided."
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          maxLength: 500
+          minLength: 1
+          pattern: "^[a-zA-Z0-9\\+/]*={0,3}$"
+          type: string
+        style: form
+      - description: Order the results by these fields. Use use the '-' sign to denote
+          descending order.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+        x-nullable: true
+      - description: "When paginating, skip this number of results."
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: "When paginating, limit the number of returned results to this\
+          \ many."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: Expression to filter the result set.
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          default: "true"
+          maxLength: 16384
+          minLength: 0
+          pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] GetRootFolder: List contents of root folder"
+      tags:
+      - Folders
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+    post:
+      operationId: CreateFolder
+      requestBody:
+        content:
+          application/json:
+            example:
+              path: /path/to/saveTo/
+              name: folderName
+            schema:
+              $ref: '#/components/schemas/CreateFolder'
+        description: A CreateFolder object that defines the name and path of the new
+          folder
+        required: true
+      responses:
+        "201":
+          content:
+            text/plain:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            application/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            text/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+          description: Created
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] CreateFolder: Create a new folder in LUSID Drive"
+      tags:
+      - Folders
+      x-fbn-apistatus: EarlyAccess
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/folders/{id}:
+    delete:
+      operationId: DeleteFolder
+      parameters:
+      - description: Unique ID of the folder
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        "404":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: No folder with this Id exists
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] DeleteFolder: Delete a specified folder and all subfolders"
+      tags:
+      - Folders
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+    get:
+      operationId: GetFolder
+      parameters:
+      - description: Unique ID of the folder
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            application/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            text/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        "404":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: No folder with this Id exists
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] GetFolder: Get metadata of folder"
+      tags:
+      - Folders
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+    post:
+      operationId: MoveFolder
+      parameters:
+      - description: Unique ID of the folder where the files should be moved
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      - description: True if the destination has file with same name if should be
+          overwritten
+        explode: true
+        in: query
+        name: overwrite
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: If true after moving the original file is deleted
+        explode: true
+        in: query
+        name: deleteSource
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      requestBody:
+        content:
+          application/json:
+            example:
+            - FolderID1
+            - FolderID2
+            - FolderID3
+            schema:
+              items:
+                type: string
+              type: array
+        description: Enumerable of unique IDs of files that should be moved
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        "404":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: No folder or file with the supplied Id exists
+        "409":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: There is already a file with the same name at this location
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] MoveFolder: Move files to specified folder"
+      tags:
+      - Folders
+      x-fbn-apistatus: EarlyAccess
+      x-content-type: application/json
+      x-accepts: application/json
+    put:
+      operationId: UpdateFolder
+      parameters:
+      - description: Unique ID of the folder
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              path: /Documents/Common/Legal/
+              name: FolderName
+            schema:
+              $ref: '#/components/schemas/UpdateFolder'
+        description: An UpdateFolder object that defines the new name or path of the
+          folder
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            application/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+            text/json:
+              example:
+                id: fb7225b63b864752aa03ba37872fe8e8
+                path: /documents/admin/legals
+                name: mylegaldocument.docx
+                createdBy: 00u3dipdntsyNqFf51t7
+                createdOn: 2020-01-02T00:00:00.0000000+00:00
+                updatedBy: 00u6po8cnkZoLoS5j1t7
+                updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                type: File
+                size: 123456
+                status: Available
+                statusDetail: ""
+              schema:
+                $ref: '#/components/schemas/StorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        "404":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: No folder with this Id exists
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] UpdateFolder: Update an existing folder's name, path"
+      tags:
+      - Folders
+      x-fbn-apistatus: EarlyAccess
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/folders/{id}/contents:
+    get:
+      operationId: GetFolderContents
+      parameters:
+      - description: Unique ID of the folder
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        style: simple
+      - description: "The pagination token to use to continue listing contents from\
+          \ a previous call to list contents.\r\n This value is returned from the\
+          \ previous call. If a pagination token is provided the sortBy and filter\
+          \ fields\r\n must not have changed since the original request. Also, if\
+          \ set, a start value cannot be provided."
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          maxLength: 500
+          minLength: 1
+          pattern: "^[a-zA-Z0-9\\+/]*={0,3}$"
+          type: string
+        style: form
+      - description: Order the results by these fields. Use use the '-' sign to denote
+          descending order.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+        x-nullable: true
+      - description: "When paginating, skip this number of results."
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: "When paginating, limit the number of returned results to this\
+          \ many."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: Expression to filter the result set.
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          default: ""
+          maxLength: 16384
+          minLength: 0
+          pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        "404":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: No folder with this Id exists
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] GetFolderContents: List contents of a folder"
+      tags:
+      - Folders
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+  /api/metadata/access/resources:
+    get:
+      description: Get the comprehensive set of resources that are available for access
+        control
+      operationId: ListAccessControlledResources
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResourceListOfAccessControlledResource'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceListOfAccessControlledResource'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResourceListOfAccessControlledResource'
+          description: Success
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] ListAccessControlledResources: Get resources available\
+        \ for access control"
+      tags:
+      - Application Metadata
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+  /api/search:
+    post:
+      operationId: Search
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          maxLength: 500
+          minLength: 1
+          pattern: "^[a-zA-Z0-9\\+/]*={0,3}$"
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+        x-nullable: true
+      - description: ""
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          default: ""
+          maxLength: 16384
+          minLength: 0
+          pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            example:
+              withPath: /some/path
+              name: filename.pdf
+            schema:
+              $ref: '#/components/schemas/SearchBody'
+        description: Search parameters
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PagedResourceListOfStorageObject'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidValidationProblemDetails'
+          description: The details of the input related failure
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: "[EARLY ACCESS] Search: Search for a file or folder with a given name\
+        \ and path"
+      tags:
+      - Search
+      x-fbn-apistatus: EarlyAccess
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    AccessControlledAction:
+      additionalProperties: false
+      example:
+        limitedSet:
+        - identifier:
+            key: identifier
+          name: name
+          description: description
+          actions:
+          - activity: activity
+            scope: scope
+            entity: entity
+          - activity: activity
+            scope: scope
+            entity: entity
+        - identifier:
+            key: identifier
+          name: name
+          description: description
+          actions:
+          - activity: activity
+            scope: scope
+            entity: entity
+          - activity: activity
+            scope: scope
+            entity: entity
+        description: description
+        action:
+          activity: activity
+          scope: scope
+          entity: entity
+        links:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+      properties:
+        description:
+          minLength: 1
+          type: string
+        action:
+          $ref: '#/components/schemas/ActionId'
+        limitedSet:
+          items:
+            $ref: '#/components/schemas/IdSelectorDefinition'
+          nullable: true
+          type: array
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          nullable: true
+          type: array
+      required:
+      - action
+      - description
+      type: object
+    AccessControlledResource:
+      additionalProperties: false
+      example:
+        application: application
+        name: name
+        description: description
+        links:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        actions:
+        - limitedSet:
+          - identifier:
+              key: identifier
+            name: name
+            description: description
+            actions:
+            - activity: activity
+              scope: scope
+              entity: entity
+            - activity: activity
+              scope: scope
+              entity: entity
+          - identifier:
+              key: identifier
+            name: name
+            description: description
+            actions:
+            - activity: activity
+              scope: scope
+              entity: entity
+            - activity: activity
+              scope: scope
+              entity: entity
+          description: description
+          action:
+            activity: activity
+            scope: scope
+            entity: entity
+          links:
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+        - limitedSet:
+          - identifier:
+              key: identifier
+            name: name
+            description: description
+            actions:
+            - activity: activity
+              scope: scope
+              entity: entity
+            - activity: activity
+              scope: scope
+              entity: entity
+          - identifier:
+              key: identifier
+            name: name
+            description: description
+            actions:
+            - activity: activity
+              scope: scope
+              entity: entity
+            - activity: activity
+              scope: scope
+              entity: entity
+          description: description
+          action:
+            activity: activity
+            scope: scope
+            entity: entity
+          links:
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+        identifierParts:
+        - displayName: displayName
+          name: name
+          index: 0
+          description: description
+          links:
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          required: true
+        - displayName: displayName
+          name: name
+          index: 0
+          description: description
+          links:
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          required: true
+      properties:
+        application:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        description:
+          minLength: 1
+          type: string
+        actions:
+          items:
+            $ref: '#/components/schemas/AccessControlledAction'
+          type: array
+        identifierParts:
+          items:
+            $ref: '#/components/schemas/IdentifierPartSchema'
+          nullable: true
+          type: array
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          nullable: true
+          type: array
+      required:
+      - actions
+      - description
+      type: object
+    ActionId:
+      additionalProperties: false
+      example:
+        activity: activity
+        scope: scope
+        entity: entity
+      properties:
+        scope:
+          maxLength: 100
+          minLength: 3
+          type: string
+        activity:
+          maxLength: 25
+          minLength: 3
+          type: string
+        entity:
+          maxLength: 25
+          minLength: 3
+          type: string
+      required:
+      - activity
+      - entity
+      - scope
+      type: object
+    CreateFolder:
+      additionalProperties: false
+      description: DTO representing the creation of a folder
+      example:
+        path: path
+        name: name
+      properties:
+        path:
+          description: Path of the created folder
+          maxLength: 512
+          minLength: 1
+          pattern: "^[\\/a-zA-Z0-9 \\-_]+$"
+          type: string
+        name:
+          description: Name of the created folder
+          maxLength: 50
+          minLength: 1
+          pattern: "^[A-Za-z0-9_-]+[A-Za-z0-9 _-]*$"
+          type: string
+      required:
+      - name
+      - path
+      type: object
+    IdentifierPartSchema:
+      additionalProperties: false
+      example:
+        displayName: displayName
+        name: name
+        index: 0
+        description: description
+        links:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        required: true
+      properties:
+        index:
+          format: int32
+          type: integer
+        name:
+          minLength: 1
+          type: string
+        displayName:
+          minLength: 1
+          type: string
+        description:
+          minLength: 1
+          type: string
+        required:
+          type: boolean
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          nullable: true
+          type: array
+      required:
+      - description
+      - displayName
+      - index
+      - name
+      - required
+      type: object
+    IdSelectorDefinition:
+      additionalProperties: false
+      example:
+        identifier:
+          key: identifier
+        name: name
+        description: description
+        actions:
+        - activity: activity
+          scope: scope
+          entity: entity
+        - activity: activity
+          scope: scope
+          entity: entity
+      properties:
+        identifier:
+          additionalProperties:
+            type: string
+          minLength: 1
+          type: object
+        actions:
+          items:
+            $ref: '#/components/schemas/ActionId'
+          minItems: 1
+          type: array
+        name:
+          maxLength: 100
+          minLength: 0
+          nullable: true
+          type: string
+        description:
+          maxLength: 1024
+          minLength: 0
+          nullable: true
+          type: string
+      required:
+      - actions
+      - identifier
+      type: object
+    Link:
+      additionalProperties: false
+      example:
+        method: method
+        description: description
+        href: https://openapi-generator.tech
+        relation: relation
+      properties:
+        relation:
+          type: string
+        href:
+          format: uri
+          type: string
+        description:
+          nullable: true
+          type: string
+        method:
+          type: string
+      required:
+      - href
+      - method
+      - relation
+      type: object
+    LusidProblemDetails:
+      additionalProperties: false
+      properties:
+        name:
+          minLength: 1
+          type: string
+        errorDetails:
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          nullable: true
+          type: array
+        code:
+          format: int32
+          type: integer
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    LusidValidationProblemDetails:
+      additionalProperties: false
+      properties:
+        name:
+          minLength: 1
+          type: string
+        errorDetails:
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          nullable: true
+          type: array
+        code:
+          format: int32
+          type: integer
+        errors:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: object
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    PagedResourceListOfStorageObject:
+      additionalProperties: false
+      example:
+        previousPage: previousPage
+        nextPage: nextPage
+        values:
+        - path: path
+          updatedBy: updatedBy
+          size: 0
+          createdBy: createdBy
+          name: name
+          statusDetail: statusDetail
+          links:
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          id: id
+          updatedOn: 2000-01-23T04:56:07.000+00:00
+          type: type
+          createdOn: 2000-01-23T04:56:07.000+00:00
+          status: status
+        - path: path
+          updatedBy: updatedBy
+          size: 0
+          createdBy: createdBy
+          name: name
+          statusDetail: statusDetail
+          links:
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          id: id
+          updatedOn: 2000-01-23T04:56:07.000+00:00
+          type: type
+          createdOn: 2000-01-23T04:56:07.000+00:00
+          status: status
+        links:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        href: https://openapi-generator.tech
+      properties:
+        nextPage:
+          nullable: true
+          type: string
+        previousPage:
+          nullable: true
+          type: string
+        values:
+          items:
+            $ref: '#/components/schemas/StorageObject'
+          type: array
+        href:
+          format: uri
+          nullable: true
+          type: string
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          nullable: true
+          type: array
+      required:
+      - values
+      type: object
+    ResourceListOfAccessControlledResource:
+      additionalProperties: false
+      example:
+        previousPage: previousPage
+        nextPage: nextPage
+        values:
+        - application: application
+          name: name
+          description: description
+          links:
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          actions:
+          - limitedSet:
+            - identifier:
+                key: identifier
+              name: name
+              description: description
+              actions:
+              - activity: activity
+                scope: scope
+                entity: entity
+              - activity: activity
+                scope: scope
+                entity: entity
+            - identifier:
+                key: identifier
+              name: name
+              description: description
+              actions:
+              - activity: activity
+                scope: scope
+                entity: entity
+              - activity: activity
+                scope: scope
+                entity: entity
+            description: description
+            action:
+              activity: activity
+              scope: scope
+              entity: entity
+            links:
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+          - limitedSet:
+            - identifier:
+                key: identifier
+              name: name
+              description: description
+              actions:
+              - activity: activity
+                scope: scope
+                entity: entity
+              - activity: activity
+                scope: scope
+                entity: entity
+            - identifier:
+                key: identifier
+              name: name
+              description: description
+              actions:
+              - activity: activity
+                scope: scope
+                entity: entity
+              - activity: activity
+                scope: scope
+                entity: entity
+            description: description
+            action:
+              activity: activity
+              scope: scope
+              entity: entity
+            links:
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+          identifierParts:
+          - displayName: displayName
+            name: name
+            index: 0
+            description: description
+            links:
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            required: true
+          - displayName: displayName
+            name: name
+            index: 0
+            description: description
+            links:
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            required: true
+        - application: application
+          name: name
+          description: description
+          links:
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          - method: method
+            description: description
+            href: https://openapi-generator.tech
+            relation: relation
+          actions:
+          - limitedSet:
+            - identifier:
+                key: identifier
+              name: name
+              description: description
+              actions:
+              - activity: activity
+                scope: scope
+                entity: entity
+              - activity: activity
+                scope: scope
+                entity: entity
+            - identifier:
+                key: identifier
+              name: name
+              description: description
+              actions:
+              - activity: activity
+                scope: scope
+                entity: entity
+              - activity: activity
+                scope: scope
+                entity: entity
+            description: description
+            action:
+              activity: activity
+              scope: scope
+              entity: entity
+            links:
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+          - limitedSet:
+            - identifier:
+                key: identifier
+              name: name
+              description: description
+              actions:
+              - activity: activity
+                scope: scope
+                entity: entity
+              - activity: activity
+                scope: scope
+                entity: entity
+            - identifier:
+                key: identifier
+              name: name
+              description: description
+              actions:
+              - activity: activity
+                scope: scope
+                entity: entity
+              - activity: activity
+                scope: scope
+                entity: entity
+            description: description
+            action:
+              activity: activity
+              scope: scope
+              entity: entity
+            links:
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+          identifierParts:
+          - displayName: displayName
+            name: name
+            index: 0
+            description: description
+            links:
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            required: true
+          - displayName: displayName
+            name: name
+            index: 0
+            description: description
+            links:
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            - method: method
+              description: description
+              href: https://openapi-generator.tech
+              relation: relation
+            required: true
+        links:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        href: https://openapi-generator.tech
+      properties:
+        values:
+          items:
+            $ref: '#/components/schemas/AccessControlledResource'
+          type: array
+        href:
+          format: uri
+          nullable: true
+          type: string
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          nullable: true
+          type: array
+        nextPage:
+          nullable: true
+          type: string
+        previousPage:
+          nullable: true
+          type: string
+      required:
+      - values
+      type: object
+    SearchBody:
+      additionalProperties: false
+      description: DTO representing the search query
+      example:
+        withPath: withPath
+        name: name
+      properties:
+        withPath:
+          description: Optional path field to limit the search to result with a matching
+            (case insensitive) path
+          maxLength: 512
+          minLength: 1
+          nullable: true
+          pattern: "^[\\/a-zA-Z0-9 \\-_]+$"
+          type: string
+        name:
+          description: Name of the file or folder to be searched
+          maxLength: 256
+          minLength: 1
+          pattern: "^[A-Za-z0-9_\\-\\.]+[A-Za-z0-9_\\-\\. ]*$"
+          type: string
+      required:
+      - name
+      type: object
+    StorageObject:
+      additionalProperties: false
+      description: An object representation of a drive file or folder
+      example:
+        path: path
+        updatedBy: updatedBy
+        size: 0
+        createdBy: createdBy
+        name: name
+        statusDetail: statusDetail
+        links:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        id: id
+        updatedOn: 2000-01-23T04:56:07.000+00:00
+        type: type
+        createdOn: 2000-01-23T04:56:07.000+00:00
+        status: status
+      properties:
+        id:
+          description: File or folder identifier
+          maxLength: 40
+          minLength: 30
+          pattern: "^[a-zA-Z0-9\\-]+$"
+          type: string
+        path:
+          description: Path of the folder or file
+          maxLength: 512
+          minLength: 1
+          pattern: "^[\\/a-zA-Z0-9 \\-_]+$"
+          type: string
+        name:
+          description: Name of the folder or file
+          maxLength: 256
+          minLength: 1
+          pattern: "^[A-Za-z0-9_\\-\\.]+[A-Za-z0-9_\\-\\. ]*$"
+          type: string
+        createdBy:
+          description: Identifier of the user who created the file or folder
+          minLength: 1
+          type: string
+        createdOn:
+          description: Date of file/folder creation
+          format: date-time
+          type: string
+        updatedBy:
+          description: Identifier of the last user to modify the file or folder
+          minLength: 1
+          type: string
+        updatedOn:
+          description: Date of file/folder modification
+          format: date-time
+          type: string
+        type:
+          description: Type of storage object (file or folder)
+          minLength: 1
+          type: string
+        size:
+          description: Size of the file in bytes
+          format: int32
+          nullable: true
+          type: integer
+        status:
+          description: "File status corresponding to virus scan status.\r\n(Active,\
+            \ Available, Checking, MalwareDetected, Failed)"
+          nullable: true
+          type: string
+        statusDetail:
+          description: Detailed description describing any negative terminal state
+            of file
+          nullable: true
+          type: string
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          nullable: true
+          type: array
+      required:
+      - createdBy
+      - createdOn
+      - id
+      - name
+      - path
+      - type
+      - updatedBy
+      - updatedOn
+      type: object
+    UpdateFile:
+      additionalProperties: false
+      description: DTO representing the update of the name or path of a file
+      example:
+        path: path
+        name: name
+      properties:
+        path:
+          description: Path of the updated file
+          maxLength: 512
+          minLength: 1
+          pattern: "^[\\/a-zA-Z0-9 \\-_]+$"
+          type: string
+        name:
+          description: Name of the updated file
+          maxLength: 256
+          minLength: 1
+          pattern: "^[A-Za-z0-9_\\-\\.]+[A-Za-z0-9_\\-\\. ]*$"
+          type: string
+      required:
+      - name
+      - path
+      type: object
+    UpdateFolder:
+      additionalProperties: false
+      description: DTO representing the update of the name or path of a file
+      example:
+        path: path
+        name: name
+      properties:
+        path:
+          description: Path of the updated folder
+          maxLength: 512
+          minLength: 1
+          pattern: "^[\\/a-zA-Z0-9 \\-_]+$"
+          type: string
+        name:
+          description: Name of the updated folder
+          maxLength: 50
+          minLength: 1
+          pattern: "^[A-Za-z0-9_-]+[A-Za-z0-9 _-]*$"
+          type: string
+      required:
+      - name
+      - path
+      type: object
+  securitySchemes:
+    oauth2:
+      description: OAuth2 Implicit Grant
+      flows:
+        implicit:
+          authorizationUrl: https://lusid.okta.com/oauth2/default/v1/authorize
+          scopes: {}
+      type: oauth2
+x-tagGroups:
+  name: API
+  tags:
+  - Application Metadata
+  - Files
+  - Folders
+  - Search
+x-group-parameters: true
+
