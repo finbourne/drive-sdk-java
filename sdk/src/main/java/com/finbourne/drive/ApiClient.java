@@ -62,10 +62,10 @@ import com.finbourne.drive.auth.OAuthFlow;
  */
 public class ApiClient {
 
-    private String basePath = "https://fbn-ci.lusid.com/drive";
+    private String basePath = "https://fbn-prd.lusid.com/drive";
     protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
     new ServerConfiguration(
-      "https://fbn-ci.lusid.com/drive",
+      "https://fbn-prd.lusid.com/drive",
       "No description provided",
       new HashMap<String, ServerVariable>()
     )
@@ -225,7 +225,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://fbn-ci.lusid.com/drive
+     * @param basePath Base path of the URL (e.g https://fbn-prd.lusid.com/drive
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {
