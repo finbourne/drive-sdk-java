@@ -18,6 +18,7 @@ import com.finbourne.drive.Configuration;
 import com.finbourne.drive.Pair;
 import com.finbourne.drive.ProgressRequestBody;
 import com.finbourne.drive.ProgressResponseBody;
+import com.finbourne.drive.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -74,6 +75,10 @@ public class FilesApi {
     }
 
     private okhttp3.Call createFileCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback _callback) throws ApiException {
+        return createFileCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call createFileCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -129,11 +134,11 @@ public class FilesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createFileValidateBeforeCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createFileValidateBeforeCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'xLusidDriveFilename' is set
         if (xLusidDriveFilename == null) {
             throw new ApiException("Missing the required parameter 'xLusidDriveFilename' when calling createFile(Async)");
@@ -154,20 +159,34 @@ public class FilesApi {
             throw new ApiException("Missing the required parameter 'body' when calling createFile(Async)");
         }
 
-        return createFileCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback);
+        return createFileCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback, opts);
 
     }
 
 
     private ApiResponse<StorageObject> createFileWithHttpInfo(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body) throws ApiException {
-        okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, null);
+        okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<StorageObject> createFileWithHttpInfo(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call createFileAsync(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback<StorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback);
+        okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call createFileAsync(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -221,6 +240,23 @@ public class FilesApi {
         }
 
         /**
+         * Execute createFile request. Use any specified configuration options to override any other configuration for this request only.
+         * @return StorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public StorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<StorageObject> localVarResp = createFileWithHttpInfo(xLusidDriveFilename, xLusidDrivePath, contentLength, body, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute createFile request with HTTP info returned
          * @return ApiResponse&lt;StorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -234,6 +270,22 @@ public class FilesApi {
          */
         public ApiResponse<StorageObject> executeWithHttpInfo() throws ApiException {
             return createFileWithHttpInfo(xLusidDriveFilename, xLusidDrivePath, contentLength, body);
+        }
+
+        /**
+         * Execute createFile request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;StorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<StorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return createFileWithHttpInfo(xLusidDriveFilename, xLusidDrivePath, contentLength, body, opts);
         }
 
         /**
@@ -251,6 +303,23 @@ public class FilesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback) throws ApiException {
             return createFileAsync(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback);
+        }
+
+        /**
+         * Execute createFile request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return createFileAsync(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback, opts);
         }
     }
 
@@ -274,6 +343,10 @@ public class FilesApi {
         return new APIcreateFileRequest(xLusidDriveFilename, xLusidDrivePath, contentLength, body);
     }
     private okhttp3.Call deleteFileCall(String id, final ApiCallback _callback) throws ApiException {
+        return deleteFileCall(id,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call deleteFileCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -317,29 +390,41 @@ public class FilesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteFileValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteFileValidateBeforeCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling deleteFile(Async)");
         }
 
-        return deleteFileCall(id, _callback);
+        return deleteFileCall(id, _callback, opts);
 
     }
 
 
     private ApiResponse<Void> deleteFileWithHttpInfo(String id) throws ApiException {
-        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, null);
+        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, null, new ConfigurationOptions());
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    private ApiResponse<Void> deleteFileWithHttpInfo(String id, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, null, opts);
         return localVarApiClient.execute(localVarCall);
     }
 
     private okhttp3.Call deleteFileAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, _callback, new ConfigurationOptions());
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call deleteFileAsync(String id, final ApiCallback<Void> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, _callback, opts);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -384,6 +469,21 @@ public class FilesApi {
         }
 
         /**
+         * Execute deleteFile request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute(ConfigurationOptions opts) throws ApiException {
+            deleteFileWithHttpInfo(id, opts);
+        }
+
+        /**
          * Execute deleteFile request with HTTP info returned
          * @return ApiResponse&lt;Void&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -397,6 +497,22 @@ public class FilesApi {
          */
         public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
             return deleteFileWithHttpInfo(id);
+        }
+
+        /**
+         * Execute deleteFile request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return deleteFileWithHttpInfo(id, opts);
         }
 
         /**
@@ -414,6 +530,23 @@ public class FilesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
             return deleteFileAsync(id, _callback);
+        }
+
+        /**
+         * Execute deleteFile request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback, ConfigurationOptions opts) throws ApiException {
+            return deleteFileAsync(id, _callback, opts);
         }
     }
 
@@ -434,6 +567,10 @@ public class FilesApi {
         return new APIdeleteFileRequest(id);
     }
     private okhttp3.Call downloadFileCall(String id, final ApiCallback _callback) throws ApiException {
+        return downloadFileCall(id,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call downloadFileCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -477,30 +614,44 @@ public class FilesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call downloadFileValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call downloadFileValidateBeforeCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling downloadFile(Async)");
         }
 
-        return downloadFileCall(id, _callback);
+        return downloadFileCall(id, _callback, opts);
 
     }
 
 
     private ApiResponse<File> downloadFileWithHttpInfo(String id) throws ApiException {
-        okhttp3.Call localVarCall = downloadFileValidateBeforeCall(id, null);
+        okhttp3.Call localVarCall = downloadFileValidateBeforeCall(id, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> downloadFileWithHttpInfo(String id, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = downloadFileValidateBeforeCall(id, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call downloadFileAsync(String id, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = downloadFileValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = downloadFileValidateBeforeCall(id, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call downloadFileAsync(String id, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadFileValidateBeforeCall(id, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -552,6 +703,25 @@ public class FilesApi {
         }
 
         /**
+         * Execute downloadFile request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 410 </td><td> Malware detected, restricted from downloading file. </td><td>  -  </td></tr>
+            <tr><td> 423 </td><td> Virus scan in progress, restricted from downloading file. </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = downloadFileWithHttpInfo(id, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute downloadFile request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -567,6 +737,24 @@ public class FilesApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return downloadFileWithHttpInfo(id);
+        }
+
+        /**
+         * Execute downloadFile request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 410 </td><td> Malware detected, restricted from downloading file. </td><td>  -  </td></tr>
+            <tr><td> 423 </td><td> Virus scan in progress, restricted from downloading file. </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return downloadFileWithHttpInfo(id, opts);
         }
 
         /**
@@ -586,6 +774,25 @@ public class FilesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return downloadFileAsync(id, _callback);
+        }
+
+        /**
+         * Execute downloadFile request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 410 </td><td> Malware detected, restricted from downloading file. </td><td>  -  </td></tr>
+            <tr><td> 423 </td><td> Virus scan in progress, restricted from downloading file. </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return downloadFileAsync(id, _callback, opts);
         }
     }
 
@@ -608,6 +815,10 @@ public class FilesApi {
         return new APIdownloadFileRequest(id);
     }
     private okhttp3.Call getFileCall(String id, final ApiCallback _callback) throws ApiException {
+        return getFileCall(id,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getFileCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -651,30 +862,44 @@ public class FilesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFileValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFileValidateBeforeCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getFile(Async)");
         }
 
-        return getFileCall(id, _callback);
+        return getFileCall(id, _callback, opts);
 
     }
 
 
     private ApiResponse<StorageObject> getFileWithHttpInfo(String id) throws ApiException {
-        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, null);
+        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<StorageObject> getFileWithHttpInfo(String id, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getFileAsync(String id, final ApiCallback<StorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getFileAsync(String id, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -722,6 +947,23 @@ public class FilesApi {
         }
 
         /**
+         * Execute getFile request. Use any specified configuration options to override any other configuration for this request only.
+         * @return StorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public StorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<StorageObject> localVarResp = getFileWithHttpInfo(id, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getFile request with HTTP info returned
          * @return ApiResponse&lt;StorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -735,6 +977,22 @@ public class FilesApi {
          */
         public ApiResponse<StorageObject> executeWithHttpInfo() throws ApiException {
             return getFileWithHttpInfo(id);
+        }
+
+        /**
+         * Execute getFile request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;StorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<StorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getFileWithHttpInfo(id, opts);
         }
 
         /**
@@ -752,6 +1010,23 @@ public class FilesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback) throws ApiException {
             return getFileAsync(id, _callback);
+        }
+
+        /**
+         * Execute getFile request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return getFileAsync(id, _callback, opts);
         }
     }
 
@@ -772,6 +1047,10 @@ public class FilesApi {
         return new APIgetFileRequest(id);
     }
     private okhttp3.Call updateFileContentsCall(String id, Integer contentLength, byte[] body, final ApiCallback _callback) throws ApiException {
+        return updateFileContentsCall(id, contentLength, body,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call updateFileContentsCall(String id, Integer contentLength, byte[] body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -820,11 +1099,11 @@ public class FilesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateFileContentsValidateBeforeCall(String id, Integer contentLength, byte[] body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateFileContentsValidateBeforeCall(String id, Integer contentLength, byte[] body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling updateFileContents(Async)");
@@ -840,20 +1119,34 @@ public class FilesApi {
             throw new ApiException("Missing the required parameter 'body' when calling updateFileContents(Async)");
         }
 
-        return updateFileContentsCall(id, contentLength, body, _callback);
+        return updateFileContentsCall(id, contentLength, body, _callback, opts);
 
     }
 
 
     private ApiResponse<StorageObject> updateFileContentsWithHttpInfo(String id, Integer contentLength, byte[] body) throws ApiException {
-        okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, null);
+        okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<StorageObject> updateFileContentsWithHttpInfo(String id, Integer contentLength, byte[] body, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call updateFileContentsAsync(String id, Integer contentLength, byte[] body, final ApiCallback<StorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, _callback);
+        okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call updateFileContentsAsync(String id, Integer contentLength, byte[] body, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -905,6 +1198,23 @@ public class FilesApi {
         }
 
         /**
+         * Execute updateFileContents request. Use any specified configuration options to override any other configuration for this request only.
+         * @return StorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public StorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<StorageObject> localVarResp = updateFileContentsWithHttpInfo(id, contentLength, body, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute updateFileContents request with HTTP info returned
          * @return ApiResponse&lt;StorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -918,6 +1228,22 @@ public class FilesApi {
          */
         public ApiResponse<StorageObject> executeWithHttpInfo() throws ApiException {
             return updateFileContentsWithHttpInfo(id, contentLength, body);
+        }
+
+        /**
+         * Execute updateFileContents request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;StorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<StorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return updateFileContentsWithHttpInfo(id, contentLength, body, opts);
         }
 
         /**
@@ -935,6 +1261,23 @@ public class FilesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback) throws ApiException {
             return updateFileContentsAsync(id, contentLength, body, _callback);
+        }
+
+        /**
+         * Execute updateFileContents request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return updateFileContentsAsync(id, contentLength, body, _callback, opts);
         }
     }
 
@@ -957,6 +1300,10 @@ public class FilesApi {
         return new APIupdateFileContentsRequest(id, contentLength, body);
     }
     private okhttp3.Call updateFileMetadataCall(String id, UpdateFile updateFile, final ApiCallback _callback) throws ApiException {
+        return updateFileMetadataCall(id, updateFile,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call updateFileMetadataCall(String id, UpdateFile updateFile, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1001,11 +1348,11 @@ public class FilesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateFileMetadataValidateBeforeCall(String id, UpdateFile updateFile, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateFileMetadataValidateBeforeCall(String id, UpdateFile updateFile, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling updateFileMetadata(Async)");
@@ -1016,20 +1363,34 @@ public class FilesApi {
             throw new ApiException("Missing the required parameter 'updateFile' when calling updateFileMetadata(Async)");
         }
 
-        return updateFileMetadataCall(id, updateFile, _callback);
+        return updateFileMetadataCall(id, updateFile, _callback, opts);
 
     }
 
 
     private ApiResponse<StorageObject> updateFileMetadataWithHttpInfo(String id, UpdateFile updateFile) throws ApiException {
-        okhttp3.Call localVarCall = updateFileMetadataValidateBeforeCall(id, updateFile, null);
+        okhttp3.Call localVarCall = updateFileMetadataValidateBeforeCall(id, updateFile, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<StorageObject> updateFileMetadataWithHttpInfo(String id, UpdateFile updateFile, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = updateFileMetadataValidateBeforeCall(id, updateFile, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call updateFileMetadataAsync(String id, UpdateFile updateFile, final ApiCallback<StorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateFileMetadataValidateBeforeCall(id, updateFile, _callback);
+        okhttp3.Call localVarCall = updateFileMetadataValidateBeforeCall(id, updateFile, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call updateFileMetadataAsync(String id, UpdateFile updateFile, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = updateFileMetadataValidateBeforeCall(id, updateFile, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1079,6 +1440,23 @@ public class FilesApi {
         }
 
         /**
+         * Execute updateFileMetadata request. Use any specified configuration options to override any other configuration for this request only.
+         * @return StorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public StorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<StorageObject> localVarResp = updateFileMetadataWithHttpInfo(id, updateFile, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute updateFileMetadata request with HTTP info returned
          * @return ApiResponse&lt;StorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1092,6 +1470,22 @@ public class FilesApi {
          */
         public ApiResponse<StorageObject> executeWithHttpInfo() throws ApiException {
             return updateFileMetadataWithHttpInfo(id, updateFile);
+        }
+
+        /**
+         * Execute updateFileMetadata request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;StorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<StorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return updateFileMetadataWithHttpInfo(id, updateFile, opts);
         }
 
         /**
@@ -1109,6 +1503,23 @@ public class FilesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback) throws ApiException {
             return updateFileMetadataAsync(id, updateFile, _callback);
+        }
+
+        /**
+         * Execute updateFileMetadata request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return updateFileMetadataAsync(id, updateFile, _callback, opts);
         }
     }
 

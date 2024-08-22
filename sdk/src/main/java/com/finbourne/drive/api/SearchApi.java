@@ -18,6 +18,7 @@ import com.finbourne.drive.Configuration;
 import com.finbourne.drive.Pair;
 import com.finbourne.drive.ProgressRequestBody;
 import com.finbourne.drive.ProgressResponseBody;
+import com.finbourne.drive.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -73,6 +74,10 @@ public class SearchApi {
     }
 
     private okhttp3.Call searchCall(SearchBody searchBody, String page, List<String> sortBy, Integer limit, String filter, final ApiCallback _callback) throws ApiException {
+        return searchCall(searchBody, page, sortBy, limit, filter,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call searchCall(SearchBody searchBody, String page, List<String> sortBy, Integer limit, String filter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -132,30 +137,44 @@ public class SearchApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchValidateBeforeCall(SearchBody searchBody, String page, List<String> sortBy, Integer limit, String filter, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call searchValidateBeforeCall(SearchBody searchBody, String page, List<String> sortBy, Integer limit, String filter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'searchBody' is set
         if (searchBody == null) {
             throw new ApiException("Missing the required parameter 'searchBody' when calling search(Async)");
         }
 
-        return searchCall(searchBody, page, sortBy, limit, filter, _callback);
+        return searchCall(searchBody, page, sortBy, limit, filter, _callback, opts);
 
     }
 
 
     private ApiResponse<PagedResourceListOfStorageObject> searchWithHttpInfo(SearchBody searchBody, String page, List<String> sortBy, Integer limit, String filter) throws ApiException {
-        okhttp3.Call localVarCall = searchValidateBeforeCall(searchBody, page, sortBy, limit, filter, null);
+        okhttp3.Call localVarCall = searchValidateBeforeCall(searchBody, page, sortBy, limit, filter, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<PagedResourceListOfStorageObject> searchWithHttpInfo(SearchBody searchBody, String page, List<String> sortBy, Integer limit, String filter, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = searchValidateBeforeCall(searchBody, page, sortBy, limit, filter, null, opts);
         Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call searchAsync(SearchBody searchBody, String page, List<String> sortBy, Integer limit, String filter, final ApiCallback<PagedResourceListOfStorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchValidateBeforeCall(searchBody, page, sortBy, limit, filter, _callback);
+        okhttp3.Call localVarCall = searchValidateBeforeCall(searchBody, page, sortBy, limit, filter, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call searchAsync(SearchBody searchBody, String page, List<String> sortBy, Integer limit, String filter, final ApiCallback<PagedResourceListOfStorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = searchValidateBeforeCall(searchBody, page, sortBy, limit, filter, _callback, opts);
         Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -247,6 +266,23 @@ public class SearchApi {
         }
 
         /**
+         * Execute search request. Use any specified configuration options to override any other configuration for this request only.
+         * @return PagedResourceListOfStorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public PagedResourceListOfStorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<PagedResourceListOfStorageObject> localVarResp = searchWithHttpInfo(searchBody, page, sortBy, limit, filter, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute search request with HTTP info returned
          * @return ApiResponse&lt;PagedResourceListOfStorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -260,6 +296,22 @@ public class SearchApi {
          */
         public ApiResponse<PagedResourceListOfStorageObject> executeWithHttpInfo() throws ApiException {
             return searchWithHttpInfo(searchBody, page, sortBy, limit, filter);
+        }
+
+        /**
+         * Execute search request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;PagedResourceListOfStorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<PagedResourceListOfStorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return searchWithHttpInfo(searchBody, page, sortBy, limit, filter, opts);
         }
 
         /**
@@ -277,6 +329,23 @@ public class SearchApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<PagedResourceListOfStorageObject> _callback) throws ApiException {
             return searchAsync(searchBody, page, sortBy, limit, filter, _callback);
+        }
+
+        /**
+         * Execute search request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<PagedResourceListOfStorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return searchAsync(searchBody, page, sortBy, limit, filter, _callback, opts);
         }
     }
 

@@ -7,57 +7,75 @@ All URIs are relative to *https://fbn-prd.lusid.com/drive*
 | [**search**](SearchApi.md#search) | **POST** /api/search | [EARLY ACCESS] Search: Search for a file or folder with a given name and path |
 
 
-<a id="search"></a>
-# **search**
-> PagedResourceListOfStorageObject search(searchBody).page(page).sortBy(sortBy).limit(limit).filter(filter).execute();
+
+## search
+
+> PagedResourceListOfStorageObject search(searchBody, page, sortBy, limit, filter)
 
 [EARLY ACCESS] Search: Search for a file or folder with a given name and path
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.drive.ApiClient;
-import com.finbourne.drive.ApiException;
-import com.finbourne.drive.Configuration;
-import com.finbourne.drive.auth.*;
-import com.finbourne.drive.models.*;
+import com.finbourne.drive.model.*;
 import com.finbourne.drive.api.SearchApi;
+import com.finbourne.drive.extensions.ApiConfigurationException;
+import com.finbourne.drive.extensions.ApiFactoryBuilder;
+import com.finbourne.drive.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/drive");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    SearchApi apiInstance = new SearchApi(defaultClient);
-    SearchBody searchBody = new SearchBody(); // SearchBody | Search parameters
-    String page = "page_example"; // String | 
-    List<String> sortBy = Arrays.asList(); // List<String> | 
-    Integer limit = 56; // Integer | 
-    String filter = ""; // String | 
-    try {
-      PagedResourceListOfStorageObject result = apiInstance.search(searchBody)
-            .page(page)
-            .sortBy(sortBy)
-            .limit(limit)
-            .filter(filter)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SearchApi#search");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class SearchApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"driveUrl\": \"https://<your-domain>.lusid.com/drive\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SearchApi apiInstance = apiFactory.build(SearchApi.class);
+
+        SearchApi apiInstance = ApiFactoryBuilder.build(fileName).build(SearchApi.class);
+        SearchBody searchBody = new SearchBody(); // SearchBody | Search parameters
+        String page = "page_example"; // String | 
+        List<String> sortBy = Arrays.asList(); // List<String> | 
+        Integer limit = 56; // Integer | 
+        String filter = ""; // String | 
+        try {
+            // uncomment the below to set overrides at the request level
+            // PagedResourceListOfStorageObject result = apiInstance.search(searchBody, page, sortBy, limit, filter).execute(opts);
+
+            PagedResourceListOfStorageObject result = apiInstance.search(searchBody, page, sortBy, limit, filter).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SearchApi#search");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -71,14 +89,11 @@ public class Example {
 
 [**PagedResourceListOfStorageObject**](PagedResourceListOfStorageObject.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+- **Content-Type**: application/json
+- **Accept**: text/plain, application/json, text/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -86,4 +101,6 @@ public class Example {
 | **200** | Success |  -  |
 | **400** | The details of the input related failure |  -  |
 | **0** | Error response |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

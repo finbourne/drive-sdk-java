@@ -18,6 +18,7 @@ import com.finbourne.drive.Configuration;
 import com.finbourne.drive.Pair;
 import com.finbourne.drive.ProgressRequestBody;
 import com.finbourne.drive.ProgressResponseBody;
+import com.finbourne.drive.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -75,6 +76,10 @@ public class FoldersApi {
     }
 
     private okhttp3.Call createFolderCall(CreateFolder createFolder, final ApiCallback _callback) throws ApiException {
+        return createFolderCall(createFolder,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call createFolderCall(CreateFolder createFolder, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -118,30 +123,44 @@ public class FoldersApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createFolderValidateBeforeCall(CreateFolder createFolder, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createFolderValidateBeforeCall(CreateFolder createFolder, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'createFolder' is set
         if (createFolder == null) {
             throw new ApiException("Missing the required parameter 'createFolder' when calling createFolder(Async)");
         }
 
-        return createFolderCall(createFolder, _callback);
+        return createFolderCall(createFolder, _callback, opts);
 
     }
 
 
     private ApiResponse<StorageObject> createFolderWithHttpInfo(CreateFolder createFolder) throws ApiException {
-        okhttp3.Call localVarCall = createFolderValidateBeforeCall(createFolder, null);
+        okhttp3.Call localVarCall = createFolderValidateBeforeCall(createFolder, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<StorageObject> createFolderWithHttpInfo(CreateFolder createFolder, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = createFolderValidateBeforeCall(createFolder, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call createFolderAsync(CreateFolder createFolder, final ApiCallback<StorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createFolderValidateBeforeCall(createFolder, _callback);
+        okhttp3.Call localVarCall = createFolderValidateBeforeCall(createFolder, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call createFolderAsync(CreateFolder createFolder, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = createFolderValidateBeforeCall(createFolder, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -189,6 +208,23 @@ public class FoldersApi {
         }
 
         /**
+         * Execute createFolder request. Use any specified configuration options to override any other configuration for this request only.
+         * @return StorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public StorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<StorageObject> localVarResp = createFolderWithHttpInfo(createFolder, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute createFolder request with HTTP info returned
          * @return ApiResponse&lt;StorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -202,6 +238,22 @@ public class FoldersApi {
          */
         public ApiResponse<StorageObject> executeWithHttpInfo() throws ApiException {
             return createFolderWithHttpInfo(createFolder);
+        }
+
+        /**
+         * Execute createFolder request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;StorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<StorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return createFolderWithHttpInfo(createFolder, opts);
         }
 
         /**
@@ -219,6 +271,23 @@ public class FoldersApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback) throws ApiException {
             return createFolderAsync(createFolder, _callback);
+        }
+
+        /**
+         * Execute createFolder request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return createFolderAsync(createFolder, _callback, opts);
         }
     }
 
@@ -239,6 +308,10 @@ public class FoldersApi {
         return new APIcreateFolderRequest(createFolder);
     }
     private okhttp3.Call deleteFolderCall(String id, final ApiCallback _callback) throws ApiException {
+        return deleteFolderCall(id,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call deleteFolderCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -282,29 +355,41 @@ public class FoldersApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteFolderValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteFolderValidateBeforeCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling deleteFolder(Async)");
         }
 
-        return deleteFolderCall(id, _callback);
+        return deleteFolderCall(id, _callback, opts);
 
     }
 
 
     private ApiResponse<Void> deleteFolderWithHttpInfo(String id) throws ApiException {
-        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(id, null);
+        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(id, null, new ConfigurationOptions());
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    private ApiResponse<Void> deleteFolderWithHttpInfo(String id, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(id, null, opts);
         return localVarApiClient.execute(localVarCall);
     }
 
     private okhttp3.Call deleteFolderAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(id, _callback, new ConfigurationOptions());
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call deleteFolderAsync(String id, final ApiCallback<Void> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(id, _callback, opts);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -351,6 +436,22 @@ public class FoldersApi {
         }
 
         /**
+         * Execute deleteFolder request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute(ConfigurationOptions opts) throws ApiException {
+            deleteFolderWithHttpInfo(id, opts);
+        }
+
+        /**
          * Execute deleteFolder request with HTTP info returned
          * @return ApiResponse&lt;Void&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -365,6 +466,23 @@ public class FoldersApi {
          */
         public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
             return deleteFolderWithHttpInfo(id);
+        }
+
+        /**
+         * Execute deleteFolder request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return deleteFolderWithHttpInfo(id, opts);
         }
 
         /**
@@ -383,6 +501,24 @@ public class FoldersApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
             return deleteFolderAsync(id, _callback);
+        }
+
+        /**
+         * Execute deleteFolder request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback, ConfigurationOptions opts) throws ApiException {
+            return deleteFolderAsync(id, _callback, opts);
         }
     }
 
@@ -404,6 +540,10 @@ public class FoldersApi {
         return new APIdeleteFolderRequest(id);
     }
     private okhttp3.Call getFolderCall(String id, final ApiCallback _callback) throws ApiException {
+        return getFolderCall(id,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getFolderCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -447,30 +587,44 @@ public class FoldersApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFolderValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFolderValidateBeforeCall(String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getFolder(Async)");
         }
 
-        return getFolderCall(id, _callback);
+        return getFolderCall(id, _callback, opts);
 
     }
 
 
     private ApiResponse<StorageObject> getFolderWithHttpInfo(String id) throws ApiException {
-        okhttp3.Call localVarCall = getFolderValidateBeforeCall(id, null);
+        okhttp3.Call localVarCall = getFolderValidateBeforeCall(id, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<StorageObject> getFolderWithHttpInfo(String id, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getFolderValidateBeforeCall(id, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getFolderAsync(String id, final ApiCallback<StorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFolderValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = getFolderValidateBeforeCall(id, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getFolderAsync(String id, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getFolderValidateBeforeCall(id, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -520,6 +674,24 @@ public class FoldersApi {
         }
 
         /**
+         * Execute getFolder request. Use any specified configuration options to override any other configuration for this request only.
+         * @return StorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public StorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<StorageObject> localVarResp = getFolderWithHttpInfo(id, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getFolder request with HTTP info returned
          * @return ApiResponse&lt;StorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -534,6 +706,23 @@ public class FoldersApi {
          */
         public ApiResponse<StorageObject> executeWithHttpInfo() throws ApiException {
             return getFolderWithHttpInfo(id);
+        }
+
+        /**
+         * Execute getFolder request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;StorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<StorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getFolderWithHttpInfo(id, opts);
         }
 
         /**
@@ -552,6 +741,24 @@ public class FoldersApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback) throws ApiException {
             return getFolderAsync(id, _callback);
+        }
+
+        /**
+         * Execute getFolder request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return getFolderAsync(id, _callback, opts);
         }
     }
 
@@ -573,6 +780,10 @@ public class FoldersApi {
         return new APIgetFolderRequest(id);
     }
     private okhttp3.Call getFolderContentsCall(String id, String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback _callback) throws ApiException {
+        return getFolderContentsCall(id, page, sortBy, start, limit, filter,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getFolderContentsCall(String id, String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -636,30 +847,44 @@ public class FoldersApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFolderContentsValidateBeforeCall(String id, String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFolderContentsValidateBeforeCall(String id, String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getFolderContents(Async)");
         }
 
-        return getFolderContentsCall(id, page, sortBy, start, limit, filter, _callback);
+        return getFolderContentsCall(id, page, sortBy, start, limit, filter, _callback, opts);
 
     }
 
 
     private ApiResponse<PagedResourceListOfStorageObject> getFolderContentsWithHttpInfo(String id, String page, List<String> sortBy, Integer start, Integer limit, String filter) throws ApiException {
-        okhttp3.Call localVarCall = getFolderContentsValidateBeforeCall(id, page, sortBy, start, limit, filter, null);
+        okhttp3.Call localVarCall = getFolderContentsValidateBeforeCall(id, page, sortBy, start, limit, filter, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<PagedResourceListOfStorageObject> getFolderContentsWithHttpInfo(String id, String page, List<String> sortBy, Integer start, Integer limit, String filter, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getFolderContentsValidateBeforeCall(id, page, sortBy, start, limit, filter, null, opts);
         Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getFolderContentsAsync(String id, String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback<PagedResourceListOfStorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFolderContentsValidateBeforeCall(id, page, sortBy, start, limit, filter, _callback);
+        okhttp3.Call localVarCall = getFolderContentsValidateBeforeCall(id, page, sortBy, start, limit, filter, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getFolderContentsAsync(String id, String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback<PagedResourceListOfStorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getFolderContentsValidateBeforeCall(id, page, sortBy, start, limit, filter, _callback, opts);
         Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -764,6 +989,24 @@ public class FoldersApi {
         }
 
         /**
+         * Execute getFolderContents request. Use any specified configuration options to override any other configuration for this request only.
+         * @return PagedResourceListOfStorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public PagedResourceListOfStorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<PagedResourceListOfStorageObject> localVarResp = getFolderContentsWithHttpInfo(id, page, sortBy, start, limit, filter, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getFolderContents request with HTTP info returned
          * @return ApiResponse&lt;PagedResourceListOfStorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -778,6 +1021,23 @@ public class FoldersApi {
          */
         public ApiResponse<PagedResourceListOfStorageObject> executeWithHttpInfo() throws ApiException {
             return getFolderContentsWithHttpInfo(id, page, sortBy, start, limit, filter);
+        }
+
+        /**
+         * Execute getFolderContents request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;PagedResourceListOfStorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<PagedResourceListOfStorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getFolderContentsWithHttpInfo(id, page, sortBy, start, limit, filter, opts);
         }
 
         /**
@@ -796,6 +1056,24 @@ public class FoldersApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<PagedResourceListOfStorageObject> _callback) throws ApiException {
             return getFolderContentsAsync(id, page, sortBy, start, limit, filter, _callback);
+        }
+
+        /**
+         * Execute getFolderContents request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<PagedResourceListOfStorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return getFolderContentsAsync(id, page, sortBy, start, limit, filter, _callback, opts);
         }
     }
 
@@ -817,6 +1095,10 @@ public class FoldersApi {
         return new APIgetFolderContentsRequest(id);
     }
     private okhttp3.Call getRootFolderCall(String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback _callback) throws ApiException {
+        return getRootFolderCall(page, sortBy, start, limit, filter,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getRootFolderCall(String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -879,25 +1161,39 @@ public class FoldersApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRootFolderValidateBeforeCall(String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback _callback) throws ApiException {
-        return getRootFolderCall(page, sortBy, start, limit, filter, _callback);
+    private okhttp3.Call getRootFolderValidateBeforeCall(String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getRootFolderCall(page, sortBy, start, limit, filter, _callback, opts);
 
     }
 
 
     private ApiResponse<PagedResourceListOfStorageObject> getRootFolderWithHttpInfo(String page, List<String> sortBy, Integer start, Integer limit, String filter) throws ApiException {
-        okhttp3.Call localVarCall = getRootFolderValidateBeforeCall(page, sortBy, start, limit, filter, null);
+        okhttp3.Call localVarCall = getRootFolderValidateBeforeCall(page, sortBy, start, limit, filter, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<PagedResourceListOfStorageObject> getRootFolderWithHttpInfo(String page, List<String> sortBy, Integer start, Integer limit, String filter, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getRootFolderValidateBeforeCall(page, sortBy, start, limit, filter, null, opts);
         Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getRootFolderAsync(String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback<PagedResourceListOfStorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getRootFolderValidateBeforeCall(page, sortBy, start, limit, filter, _callback);
+        okhttp3.Call localVarCall = getRootFolderValidateBeforeCall(page, sortBy, start, limit, filter, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getRootFolderAsync(String page, List<String> sortBy, Integer start, Integer limit, String filter, final ApiCallback<PagedResourceListOfStorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getRootFolderValidateBeforeCall(page, sortBy, start, limit, filter, _callback, opts);
         Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -998,6 +1294,23 @@ public class FoldersApi {
         }
 
         /**
+         * Execute getRootFolder request. Use any specified configuration options to override any other configuration for this request only.
+         * @return PagedResourceListOfStorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public PagedResourceListOfStorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<PagedResourceListOfStorageObject> localVarResp = getRootFolderWithHttpInfo(page, sortBy, start, limit, filter, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getRootFolder request with HTTP info returned
          * @return ApiResponse&lt;PagedResourceListOfStorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1011,6 +1324,22 @@ public class FoldersApi {
          */
         public ApiResponse<PagedResourceListOfStorageObject> executeWithHttpInfo() throws ApiException {
             return getRootFolderWithHttpInfo(page, sortBy, start, limit, filter);
+        }
+
+        /**
+         * Execute getRootFolder request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;PagedResourceListOfStorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<PagedResourceListOfStorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getRootFolderWithHttpInfo(page, sortBy, start, limit, filter, opts);
         }
 
         /**
@@ -1028,6 +1357,23 @@ public class FoldersApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<PagedResourceListOfStorageObject> _callback) throws ApiException {
             return getRootFolderAsync(page, sortBy, start, limit, filter, _callback);
+        }
+
+        /**
+         * Execute getRootFolder request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<PagedResourceListOfStorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return getRootFolderAsync(page, sortBy, start, limit, filter, _callback, opts);
         }
     }
 
@@ -1047,6 +1393,10 @@ public class FoldersApi {
         return new APIgetRootFolderRequest();
     }
     private okhttp3.Call moveFolderCall(String id, List<String> requestBody, Boolean overwrite, Boolean deleteSource, final ApiCallback _callback) throws ApiException {
+        return moveFolderCall(id, requestBody, overwrite, deleteSource,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call moveFolderCall(String id, List<String> requestBody, Boolean overwrite, Boolean deleteSource, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1099,11 +1449,11 @@ public class FoldersApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call moveFolderValidateBeforeCall(String id, List<String> requestBody, Boolean overwrite, Boolean deleteSource, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call moveFolderValidateBeforeCall(String id, List<String> requestBody, Boolean overwrite, Boolean deleteSource, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling moveFolder(Async)");
@@ -1114,20 +1464,34 @@ public class FoldersApi {
             throw new ApiException("Missing the required parameter 'requestBody' when calling moveFolder(Async)");
         }
 
-        return moveFolderCall(id, requestBody, overwrite, deleteSource, _callback);
+        return moveFolderCall(id, requestBody, overwrite, deleteSource, _callback, opts);
 
     }
 
 
     private ApiResponse<PagedResourceListOfStorageObject> moveFolderWithHttpInfo(String id, List<String> requestBody, Boolean overwrite, Boolean deleteSource) throws ApiException {
-        okhttp3.Call localVarCall = moveFolderValidateBeforeCall(id, requestBody, overwrite, deleteSource, null);
+        okhttp3.Call localVarCall = moveFolderValidateBeforeCall(id, requestBody, overwrite, deleteSource, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<PagedResourceListOfStorageObject> moveFolderWithHttpInfo(String id, List<String> requestBody, Boolean overwrite, Boolean deleteSource, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = moveFolderValidateBeforeCall(id, requestBody, overwrite, deleteSource, null, opts);
         Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call moveFolderAsync(String id, List<String> requestBody, Boolean overwrite, Boolean deleteSource, final ApiCallback<PagedResourceListOfStorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = moveFolderValidateBeforeCall(id, requestBody, overwrite, deleteSource, _callback);
+        okhttp3.Call localVarCall = moveFolderValidateBeforeCall(id, requestBody, overwrite, deleteSource, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call moveFolderAsync(String id, List<String> requestBody, Boolean overwrite, Boolean deleteSource, final ApiCallback<PagedResourceListOfStorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = moveFolderValidateBeforeCall(id, requestBody, overwrite, deleteSource, _callback, opts);
         Type localVarReturnType = new TypeToken<PagedResourceListOfStorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1203,6 +1567,25 @@ public class FoldersApi {
         }
 
         /**
+         * Execute moveFolder request. Use any specified configuration options to override any other configuration for this request only.
+         * @return PagedResourceListOfStorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder or file with the supplied Id exists </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> There is already a file with the same name at this location </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public PagedResourceListOfStorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<PagedResourceListOfStorageObject> localVarResp = moveFolderWithHttpInfo(id, requestBody, overwrite, deleteSource, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute moveFolder request with HTTP info returned
          * @return ApiResponse&lt;PagedResourceListOfStorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1218,6 +1601,24 @@ public class FoldersApi {
          */
         public ApiResponse<PagedResourceListOfStorageObject> executeWithHttpInfo() throws ApiException {
             return moveFolderWithHttpInfo(id, requestBody, overwrite, deleteSource);
+        }
+
+        /**
+         * Execute moveFolder request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;PagedResourceListOfStorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder or file with the supplied Id exists </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> There is already a file with the same name at this location </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<PagedResourceListOfStorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return moveFolderWithHttpInfo(id, requestBody, overwrite, deleteSource, opts);
         }
 
         /**
@@ -1237,6 +1638,25 @@ public class FoldersApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<PagedResourceListOfStorageObject> _callback) throws ApiException {
             return moveFolderAsync(id, requestBody, overwrite, deleteSource, _callback);
+        }
+
+        /**
+         * Execute moveFolder request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder or file with the supplied Id exists </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> There is already a file with the same name at this location </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<PagedResourceListOfStorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return moveFolderAsync(id, requestBody, overwrite, deleteSource, _callback, opts);
         }
     }
 
@@ -1260,6 +1680,10 @@ public class FoldersApi {
         return new APImoveFolderRequest(id, requestBody);
     }
     private okhttp3.Call updateFolderCall(String id, UpdateFolder updateFolder, final ApiCallback _callback) throws ApiException {
+        return updateFolderCall(id, updateFolder,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call updateFolderCall(String id, UpdateFolder updateFolder, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1304,11 +1728,11 @@ public class FoldersApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateFolderValidateBeforeCall(String id, UpdateFolder updateFolder, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateFolderValidateBeforeCall(String id, UpdateFolder updateFolder, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling updateFolder(Async)");
@@ -1319,20 +1743,34 @@ public class FoldersApi {
             throw new ApiException("Missing the required parameter 'updateFolder' when calling updateFolder(Async)");
         }
 
-        return updateFolderCall(id, updateFolder, _callback);
+        return updateFolderCall(id, updateFolder, _callback, opts);
 
     }
 
 
     private ApiResponse<StorageObject> updateFolderWithHttpInfo(String id, UpdateFolder updateFolder) throws ApiException {
-        okhttp3.Call localVarCall = updateFolderValidateBeforeCall(id, updateFolder, null);
+        okhttp3.Call localVarCall = updateFolderValidateBeforeCall(id, updateFolder, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<StorageObject> updateFolderWithHttpInfo(String id, UpdateFolder updateFolder, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = updateFolderValidateBeforeCall(id, updateFolder, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call updateFolderAsync(String id, UpdateFolder updateFolder, final ApiCallback<StorageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateFolderValidateBeforeCall(id, updateFolder, _callback);
+        okhttp3.Call localVarCall = updateFolderValidateBeforeCall(id, updateFolder, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call updateFolderAsync(String id, UpdateFolder updateFolder, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = updateFolderValidateBeforeCall(id, updateFolder, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1384,6 +1822,24 @@ public class FoldersApi {
         }
 
         /**
+         * Execute updateFolder request. Use any specified configuration options to override any other configuration for this request only.
+         * @return StorageObject
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public StorageObject execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<StorageObject> localVarResp = updateFolderWithHttpInfo(id, updateFolder, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute updateFolder request with HTTP info returned
          * @return ApiResponse&lt;StorageObject&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1398,6 +1854,23 @@ public class FoldersApi {
          */
         public ApiResponse<StorageObject> executeWithHttpInfo() throws ApiException {
             return updateFolderWithHttpInfo(id, updateFolder);
+        }
+
+        /**
+         * Execute updateFolder request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;StorageObject&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<StorageObject> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return updateFolderWithHttpInfo(id, updateFolder, opts);
         }
 
         /**
@@ -1416,6 +1889,24 @@ public class FoldersApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback) throws ApiException {
             return updateFolderAsync(id, updateFolder, _callback);
+        }
+
+        /**
+         * Execute updateFolder request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No folder with this Id exists </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+            return updateFolderAsync(id, updateFolder, _callback, opts);
         }
     }
 
