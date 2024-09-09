@@ -324,7 +324,7 @@ public class FilesApi {
     }
 
     /**
-     * [EARLY ACCESS] CreateFile: Uploads a file to Lusid Drive. If using an SDK, consider using the UploadAsStreamAsync function for larger files instead.
+     * CreateFile: Uploads a file to Lusid Drive. If using an SDK, consider using the UploadAsStreamAsync function for larger files instead.
      * 
      * @param xLusidDriveFilename File name. (required)
      * @param xLusidDrivePath File path. (required)
@@ -797,7 +797,7 @@ public class FilesApi {
     }
 
     /**
-     * [EARLY ACCESS] DownloadFile: Download the file from Drive.
+     * DownloadFile: Download the file from Drive.
      * 
      * @param id Identifier of the file to be downloaded. (required)
      * @return APIdownloadFileRequest

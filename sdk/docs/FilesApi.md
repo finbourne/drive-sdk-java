@@ -4,9 +4,9 @@ All URIs are relative to *https://fbn-prd.lusid.com/drive*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createFile**](FilesApi.md#createFile) | **POST** /api/files | [EARLY ACCESS] CreateFile: Uploads a file to Lusid Drive. If using an SDK, consider using the UploadAsStreamAsync function for larger files instead. |
+| [**createFile**](FilesApi.md#createFile) | **POST** /api/files | CreateFile: Uploads a file to Lusid Drive. If using an SDK, consider using the UploadAsStreamAsync function for larger files instead. |
 | [**deleteFile**](FilesApi.md#deleteFile) | **DELETE** /api/files/{id} | [EARLY ACCESS] DeleteFile: Deletes a file from Drive. |
-| [**downloadFile**](FilesApi.md#downloadFile) | **GET** /api/files/{id}/contents | [EARLY ACCESS] DownloadFile: Download the file from Drive. |
+| [**downloadFile**](FilesApi.md#downloadFile) | **GET** /api/files/{id}/contents | DownloadFile: Download the file from Drive. |
 | [**getFile**](FilesApi.md#getFile) | **GET** /api/files/{id} | [EARLY ACCESS] GetFile: Get a file stored in Drive. |
 | [**updateFileContents**](FilesApi.md#updateFileContents) | **PUT** /api/files/{id}/contents | [EARLY ACCESS] UpdateFileContents: Updates contents of a file in Drive. |
 | [**updateFileMetadata**](FilesApi.md#updateFileMetadata) | **PUT** /api/files/{id} | [EARLY ACCESS] UpdateFileMetadata: Updates metadata for a file in Drive. |
@@ -17,7 +17,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/drive*
 
 > StorageObject createFile(xLusidDriveFilename, xLusidDrivePath, contentLength, body)
 
-[EARLY ACCESS] CreateFile: Uploads a file to Lusid Drive. If using an SDK, consider using the UploadAsStreamAsync function for larger files instead.
+CreateFile: Uploads a file to Lusid Drive. If using an SDK, consider using the UploadAsStreamAsync function for larger files instead.
 
 ### Example
 
@@ -200,7 +200,7 @@ null (empty response body)
 
 > File downloadFile(id)
 
-[EARLY ACCESS] DownloadFile: Download the file from Drive.
+DownloadFile: Download the file from Drive.
 
 ### Example
 

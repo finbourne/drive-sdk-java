@@ -1078,7 +1078,7 @@ public class FoldersApi {
     }
 
     /**
-     * [EARLY ACCESS] GetFolderContents: List contents of a folder
+     * GetFolderContents: List contents of a folder
      * 
      * @param id Unique ID of the folder (required)
      * @return APIgetFolderContentsRequest
@@ -1378,7 +1378,7 @@ public class FoldersApi {
     }
 
     /**
-     * [EARLY ACCESS] GetRootFolder: List contents of root folder
+     * GetRootFolder: List contents of root folder
      * 
      * @return APIgetRootFolderRequest
      * @http.response.details

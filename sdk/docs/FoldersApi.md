@@ -7,8 +7,8 @@ All URIs are relative to *https://fbn-prd.lusid.com/drive*
 | [**createFolder**](FoldersApi.md#createFolder) | **POST** /api/folders | [EARLY ACCESS] CreateFolder: Create a new folder in LUSID Drive |
 | [**deleteFolder**](FoldersApi.md#deleteFolder) | **DELETE** /api/folders/{id} | [EARLY ACCESS] DeleteFolder: Delete a specified folder and all subfolders |
 | [**getFolder**](FoldersApi.md#getFolder) | **GET** /api/folders/{id} | [EARLY ACCESS] GetFolder: Get metadata of folder |
-| [**getFolderContents**](FoldersApi.md#getFolderContents) | **GET** /api/folders/{id}/contents | [EARLY ACCESS] GetFolderContents: List contents of a folder |
-| [**getRootFolder**](FoldersApi.md#getRootFolder) | **GET** /api/folders | [EARLY ACCESS] GetRootFolder: List contents of root folder |
+| [**getFolderContents**](FoldersApi.md#getFolderContents) | **GET** /api/folders/{id}/contents | GetFolderContents: List contents of a folder |
+| [**getRootFolder**](FoldersApi.md#getRootFolder) | **GET** /api/folders | GetRootFolder: List contents of root folder |
 | [**moveFolder**](FoldersApi.md#moveFolder) | **POST** /api/folders/{id} | [EARLY ACCESS] MoveFolder: Move files to specified folder |
 | [**updateFolder**](FoldersApi.md#updateFolder) | **PUT** /api/folders/{id} | [EARLY ACCESS] UpdateFolder: Update an existing folder&#39;s name, path |
 
@@ -286,7 +286,7 @@ public class FoldersApiExample {
 
 > PagedResourceListOfStorageObject getFolderContents(id, page, sortBy, start, limit, filter)
 
-[EARLY ACCESS] GetFolderContents: List contents of a folder
+GetFolderContents: List contents of a folder
 
 ### Example
 
@@ -386,7 +386,7 @@ public class FoldersApiExample {
 
 > PagedResourceListOfStorageObject getRootFolder(page, sortBy, start, limit, filter)
 
-[EARLY ACCESS] GetRootFolder: List contents of root folder
+GetRootFolder: List contents of root folder
 
 ### Example
 
