@@ -23,7 +23,7 @@ info:
     \ specified impersonated user does not exist| |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Drive API
-  version: 0.1.667
+  version: 0.1.670
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
