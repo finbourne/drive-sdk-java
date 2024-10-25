@@ -4,29 +4,82 @@ info:
     email: info@finbourne.com
     name: FINBOURNE Technology
     url: https://www.finbourne.com
-  description: "### Introduction \n\n# Error Codes\n\n | Code|Name|Description |\n\
-    | ---|---|--- |\n| <a name=\"-1\">-1</a>|Unknown error|An unexpected error was\
-    \ encountered on our side. |\n| <a name=\"144\">144</a>|Duplicate In Parameter\
-    \ Set| |\n| <a name=\"151\">151</a>|Invalid Parameter Value| |\n| <a name=\"165\"\
-    >165</a>|Failed To Delete| |\n| <a name=\"664\">664</a>|Folder already exists|\
-    \ |\n| <a name=\"665\">665</a>|Destination directory not found| |\n| <a name=\"\
-    666\">666</a>|Unknown Identifier| |\n| <a name=\"668\">668</a>|Root directory\
-    \ not present| |\n| <a name=\"669\">669</a>|Failed to create root directory| |\n\
-    | <a name=\"670\">670</a>|File size exceeds maximum limit| |\n| <a name=\"671\"\
-    >671</a>|File already exists| |\n| <a name=\"672\">672</a>|Could not retrieve\
-    \ file contents| |\n| <a name=\"683\">683</a>|Full path to resource is too long|\
-    \ |\n| <a name=\"689\">689</a>|The supplied pagination token is invalid| |\n|\
-    \ <a name=\"692\">692</a>|This endpoint does not support impersonation| |\n| <a\
-    \ name=\"696\">696</a>|Unexpected payload size| |\n| <a name=\"715\">715</a>|Restricted\
-    \ from downloading file containing malware.| |\n| <a name=\"716\">716</a>|Restricted\
-    \ from downloading file whilst virus scan in progress.| |\n| <a name=\"871\">871</a>|The\
-    \ specified impersonated user does not exist| |\n"
+  description: |
+    Drive is a secure file repository and manager that can act as a staging area for LUSID. You can upload files to Drive in preparation for loading investment data into LUSID, or export data from LUSID to Drive for consumption by external systems. Or simply share files with other LUSID users.
+
+    ### Error Codes
+
+    | Code|Name|Description |
+    | ---|---|--- |
+    | <a name="-1">-1</a>|Unknown error|An unexpected error was encountered on our side. |
+    | <a name="144">144</a>|Duplicate In Parameter Set| |
+    | <a name="151">151</a>|Invalid Parameter Value| |
+    | <a name="165">165</a>|Failed To Delete| |
+    | <a name="664">664</a>|Folder already exists| |
+    | <a name="665">665</a>|Destination directory not found| |
+    | <a name="666">666</a>|Unknown Identifier| |
+    | <a name="668">668</a>|Root directory not present| |
+    | <a name="669">669</a>|Failed to create root directory| |
+    | <a name="670">670</a>|File size exceeds maximum limit| |
+    | <a name="671">671</a>|File already exists| |
+    | <a name="672">672</a>|Could not retrieve file contents| |
+    | <a name="683">683</a>|Full path to resource is too long| |
+    | <a name="689">689</a>|The supplied pagination token is invalid| |
+    | <a name="692">692</a>|This endpoint does not support impersonation| |
+    | <a name="696">696</a>|Unexpected payload size| |
+    | <a name="715">715</a>|Restricted from downloading file containing malware.| |
+    | <a name="716">716</a>|Restricted from downloading file whilst virus scan in progress.| |
+    | <a name="871">871</a>|The specified impersonated user does not exist| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Drive API
-  version: 0.1.670
+  version: 0.1.672
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
+  x-fbn-error-codes:
+    "-1":
+      title: Unknown error
+      description: An unexpected error was encountered on our side.
+    "144":
+      title: Duplicate In Parameter Set
+    "151":
+      title: Invalid Parameter Value
+    "165":
+      title: Failed To Delete
+    "664":
+      title: Folder already exists
+    "665":
+      title: Destination directory not found
+    "666":
+      title: Unknown Identifier
+    "668":
+      title: Root directory not present
+    "669":
+      title: Failed to create root directory
+    "670":
+      title: File size exceeds maximum limit
+    "671":
+      title: File already exists
+    "672":
+      title: Could not retrieve file contents
+    "683":
+      title: Full path to resource is too long
+    "689":
+      title: The supplied pagination token is invalid
+    "692":
+      title: This endpoint does not support impersonation
+    "696":
+      title: Unexpected payload size
+    "715":
+      title: Restricted from downloading file containing malware.
+    "716":
+      title: Restricted from downloading file whilst virus scan in progress.
+    "871":
+      title: The specified impersonated user does not exist
+  x-fbn-description: "Drive is a secure file repository and manager that can act as\
+    \ a staging area for LUSID. You can upload files to Drive in preparation for loading\
+    \ investment data into LUSID, or export data from LUSID to Drive for consumption\
+    \ by external systems. Or simply share files with other LUSID users."
 servers:
 - url: https://fbn-prd.lusid.com/drive
 security:
