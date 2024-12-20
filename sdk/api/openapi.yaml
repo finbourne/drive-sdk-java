@@ -30,9 +30,10 @@ info:
     | <a name="715">715</a>|Restricted from downloading file containing malware.| |
     | <a name="716">716</a>|Restricted from downloading file whilst virus scan in progress.| |
     | <a name="871">871</a>|The specified impersonated user does not exist| |
+    | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Drive API
-  version: 0.1.688
+  version: 0.1.692
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -76,6 +77,8 @@ info:
       title: Restricted from downloading file whilst virus scan in progress.
     "871":
       title: The specified impersonated user does not exist
+    "939":
+      title: Blocked by a Network Zone
   x-fbn-description: "Drive is a secure file repository and manager that can act as\
     \ a staging area for LUSID. You can upload files to Drive in preparation for loading\
     \ investment data into LUSID, or export data from LUSID to Drive for consumption\
