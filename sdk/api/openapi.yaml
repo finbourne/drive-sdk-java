@@ -33,7 +33,7 @@ info:
     | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Drive API
-  version: 0.1.692
+  version: 0.1.705
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -144,7 +144,7 @@ paths:
           content:
             text/plain:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -159,7 +159,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             application/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -174,7 +174,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             text/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -277,7 +277,7 @@ paths:
           content:
             text/plain:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -292,7 +292,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             application/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -307,7 +307,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             text/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -320,7 +320,7 @@ paths:
                 statusDetail: ""
               schema:
                 $ref: '#/components/schemas/StorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -375,7 +375,7 @@ paths:
           content:
             text/plain:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -390,7 +390,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             application/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -405,7 +405,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             text/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -418,7 +418,7 @@ paths:
                 statusDetail: ""
               schema:
                 $ref: '#/components/schemas/StorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -476,7 +476,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "410":
           content:
             text/plain:
@@ -561,7 +561,7 @@ paths:
           content:
             text/plain:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -576,7 +576,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             application/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -591,7 +591,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             text/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -604,7 +604,7 @@ paths:
                 statusDetail: ""
               schema:
                 $ref: '#/components/schemas/StorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -699,15 +699,117 @@ paths:
         "200":
           content:
             text/plain:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
             application/json:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
             text/json:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -751,7 +853,7 @@ paths:
           content:
             text/plain:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -766,7 +868,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             application/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -781,7 +883,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             text/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -895,7 +997,7 @@ paths:
           content:
             text/plain:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -910,7 +1012,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             application/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -925,7 +1027,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             text/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -938,7 +1040,7 @@ paths:
                 statusDetail: ""
               schema:
                 $ref: '#/components/schemas/StorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1028,15 +1130,117 @@ paths:
         "200":
           content:
             text/plain:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
             application/json:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
             text/json:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1117,7 +1321,7 @@ paths:
           content:
             text/plain:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -1132,7 +1336,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             application/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -1147,7 +1351,7 @@ paths:
                 $ref: '#/components/schemas/StorageObject'
             text/json:
               example:
-                id: fb7225b63b864752aa03ba37872fe8e8
+                id: fb7225b63b864752aa03ba37872fe8e8s31w
                 path: /documents/admin/legals
                 name: mylegaldocument.docx
                 createdBy: 00u3dipdntsyNqFf51t7
@@ -1160,7 +1364,7 @@ paths:
                 statusDetail: ""
               schema:
                 $ref: '#/components/schemas/StorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1278,15 +1482,117 @@ paths:
         "200":
           content:
             text/plain:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
             application/json:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
             text/json:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1341,7 +1647,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ResourceListOfAccessControlledResource'
-          description: Success
+          description: OK
         default:
           content:
             application/json:
@@ -1418,15 +1724,117 @@ paths:
         "200":
           content:
             text/plain:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
             application/json:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
             text/json:
+              example:
+                values:
+                - id: fb7225b63b864752aa03ba37872fe8e8s31w
+                  path: /documents/admin/legals
+                  name: mylegaldocument.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                - id: fb7225b63b864752aa03ba37872fe8e8s31x
+                  path: /documents/admin/legals
+                  name: mylegaldocument2.docx
+                  createdBy: 00u3dipdntsyNqFf51t7
+                  createdOn: 2020-01-02T00:00:00.0000000+00:00
+                  updatedBy: 00u6po8cnkZoLoS5j1t7
+                  updatedOn: 2020-03-02T00:00:00.0000000+00:00
+                  type: File
+                  size: 123456
+                  status: Available
+                  statusDetail: ""
+                href: http://pages.com
+                nextPage: Next Page
+                previousPage: Previous Page
+                links:
+                - relation: NextPage
+                  href: http://pages.com/page4
+                  method: GET
+                - relation: PreviousPage
+                  href: http://pages.com/page2
+                  method: GET
               schema:
                 $ref: '#/components/schemas/PagedResourceListOfStorageObject'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1771,6 +2179,7 @@ components:
       properties:
         identifier:
           additionalProperties:
+            nullable: true
             type: string
           minLength: 1
           type: object
