@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.0.4
 info:
   contact:
     email: info@finbourne.com
@@ -33,7 +33,7 @@ info:
     | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Drive API
-  version: 0.1.741
+  version: 0.1.744
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -635,11 +635,10 @@ paths:
     get:
       operationId: GetRootFolder
       parameters:
-      - description: "The pagination token to use to continue listing contents from\
-          \ a previous call to list contents.\r\n This value is returned from the\
-          \ previous call. If a pagination token is provided the sortBy and filter\
-          \ fields\r\n must not have changed since the original request. Also, if\
-          \ set, a start value cannot be provided."
+      - description: |-
+          The pagination token to use to continue listing contents from a previous call to list contents.
+           This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields
+           must not have changed since the original request. Also, if set, a start value cannot be provided.
         explode: true
         in: query
         name: page
@@ -1418,11 +1417,10 @@ paths:
           pattern: "^[a-zA-Z0-9\\-]+$"
           type: string
         style: simple
-      - description: "The pagination token to use to continue listing contents from\
-          \ a previous call to list contents.\r\n This value is returned from the\
-          \ previous call. If a pagination token is provided the sortBy and filter\
-          \ fields\r\n must not have changed since the original request. Also, if\
-          \ set, a start value cannot be provided."
+      - description: |-
+          The pagination token to use to continue listing contents from a previous call to list contents.
+           This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields
+           must not have changed since the original request. Also, if set, a start value cannot be provided.
         explode: true
         in: query
         name: page
@@ -2747,8 +2745,9 @@ components:
           nullable: true
           type: integer
         status:
-          description: "File status corresponding to virus scan status.\r\n(Active,\
-            \ Available, Checking, MalwareDetected, Failed)"
+          description: |-
+            File status corresponding to virus scan status.
+            (Active, Available, Checking, MalwareDetected, Failed)
           nullable: true
           type: string
         statusDetail:

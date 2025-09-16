@@ -904,7 +904,7 @@ public class FoldersApi {
 
         /**
          * Set page
-         * @param page The pagination token to use to continue listing contents from a previous call to list contents.   This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields   must not have changed since the original request. Also, if set, a start value cannot be provided. (optional)
+         * @param page The pagination token to use to continue listing contents from a previous call to list contents.  This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields  must not have changed since the original request. Also, if set, a start value cannot be provided. (optional)
          * @return APIgetFolderContentsRequest
          */
         public APIgetFolderContentsRequest page(String page) {
@@ -1211,7 +1211,7 @@ public class FoldersApi {
 
         /**
          * Set page
-         * @param page The pagination token to use to continue listing contents from a previous call to list contents.   This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields   must not have changed since the original request. Also, if set, a start value cannot be provided. (optional)
+         * @param page The pagination token to use to continue listing contents from a previous call to list contents.  This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields  must not have changed since the original request. Also, if set, a start value cannot be provided. (optional)
          * @return APIgetRootFolderRequest
          */
         public APIgetRootFolderRequest page(String page) {

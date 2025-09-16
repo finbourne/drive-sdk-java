@@ -328,7 +328,7 @@ public class FoldersApiExample {
 
         FoldersApi apiInstance = ApiFactoryBuilder.build(fileName).build(FoldersApi.class);
         String id = "id_example"; // String | Unique ID of the folder
-        String page = "page_example"; // String | The pagination token to use to continue listing contents from a previous call to list contents.   This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields   must not have changed since the original request. Also, if set, a start value cannot be provided.
+        String page = "page_example"; // String | The pagination token to use to continue listing contents from a previous call to list contents.  This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields  must not have changed since the original request. Also, if set, a start value cannot be provided.
         List<String> sortBy = Arrays.asList(); // List<String> | Order the results by these fields. Use use the '-' sign to denote descending order.
         Integer start = 56; // Integer | When paginating, skip this number of results.
         Integer limit = 56; // Integer | When paginating, limit the number of returned results to this many.
@@ -355,7 +355,7 @@ public class FoldersApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Unique ID of the folder | |
-| **page** | **String**| The pagination token to use to continue listing contents from a previous call to list contents.   This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields   must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] |
+| **page** | **String**| The pagination token to use to continue listing contents from a previous call to list contents.  This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields  must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] |
 | **sortBy** | [**List&lt;String&gt;**](String.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order. | [optional] |
 | **start** | **Integer**| When paginating, skip this number of results. | [optional] |
 | **limit** | **Integer**| When paginating, limit the number of returned results to this many. | [optional] |
@@ -427,7 +427,7 @@ public class FoldersApiExample {
         // FoldersApi apiInstance = apiFactory.build(FoldersApi.class);
 
         FoldersApi apiInstance = ApiFactoryBuilder.build(fileName).build(FoldersApi.class);
-        String page = "page_example"; // String | The pagination token to use to continue listing contents from a previous call to list contents.   This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields   must not have changed since the original request. Also, if set, a start value cannot be provided.
+        String page = "page_example"; // String | The pagination token to use to continue listing contents from a previous call to list contents.  This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields  must not have changed since the original request. Also, if set, a start value cannot be provided.
         List<String> sortBy = Arrays.asList(); // List<String> | Order the results by these fields. Use use the '-' sign to denote descending order.
         Integer start = 56; // Integer | When paginating, skip this number of results.
         Integer limit = 56; // Integer | When paginating, limit the number of returned results to this many.
@@ -453,7 +453,7 @@ public class FoldersApiExample {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **page** | **String**| The pagination token to use to continue listing contents from a previous call to list contents.   This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields   must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] |
+| **page** | **String**| The pagination token to use to continue listing contents from a previous call to list contents.  This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields  must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] |
 | **sortBy** | [**List&lt;String&gt;**](String.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order. | [optional] |
 | **start** | **Integer**| When paginating, skip this number of results. | [optional] |
 | **limit** | **Integer**| When paginating, limit the number of returned results to this many. | [optional] |

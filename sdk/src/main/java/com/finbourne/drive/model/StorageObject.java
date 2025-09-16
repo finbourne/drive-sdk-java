@@ -301,7 +301,7 @@ public class StorageObject {
   }
 
    /**
-   * File status corresponding to virus scan status.  (Active, Available, Checking, MalwareDetected, Failed)
+   * File status corresponding to virus scan status. (Active, Available, Checking, MalwareDetected, Failed)
    * @return status
   **/
   @jakarta.annotation.Nullable

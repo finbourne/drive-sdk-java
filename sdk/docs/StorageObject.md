@@ -17,7 +17,7 @@ An object representation of a drive file or folder
 |**updatedOn** | **OffsetDateTime** | Date of file/folder modification |  |
 |**type** | **String** | Type of storage object (file or folder) |  |
 |**size** | **Integer** | Size of the file in bytes |  [optional] |
-|**status** | **String** | File status corresponding to virus scan status.  (Active, Available, Checking, MalwareDetected, Failed) |  [optional] |
+|**status** | **String** | File status corresponding to virus scan status. (Active, Available, Checking, MalwareDetected, Failed) |  [optional] |
 |**statusDetail** | **String** | Detailed description describing any negative terminal state of file |  [optional] |
 |**links** | [**List&lt;Link&gt;**](Link.md) |  |  [optional] |
 
