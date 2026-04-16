@@ -61,7 +61,7 @@ public class FilesApiExample {
         String xLusidDriveFilename = "xLusidDriveFilename_example"; // String | File name.
         String xLusidDrivePath = "xLusidDrivePath_example"; // String | File path.
         Integer contentLength = 56; // Integer | The size in bytes of the file to be uploaded
-        byte[] body = null; // byte[] | 
+        File body = new File("/path/to/file"); // File | Binary file content to upload as a stream
         try {
             // uncomment the below to set overrides at the request level
             // StorageObject result = apiInstance.createFile(xLusidDriveFilename, xLusidDrivePath, contentLength, body).execute(opts);
@@ -86,7 +86,7 @@ public class FilesApiExample {
 | **xLusidDriveFilename** | **String**| File name. | |
 | **xLusidDrivePath** | **String**| File path. | |
 | **contentLength** | **Integer**| The size in bytes of the file to be uploaded | |
-| **body** | **byte[]**|  | |
+| **body** | **File**| Binary file content to upload as a stream | |
 
 ### Return type
 
@@ -423,7 +423,7 @@ public class FilesApiExample {
         FilesApi apiInstance = ApiFactoryBuilder.build(fileName).build(FilesApi.class);
         String id = "id_example"; // String | The unique file identifier
         Integer contentLength = 56; // Integer | The size in bytes of the file to be uploaded
-        byte[] body = null; // byte[] | 
+        File body = new File("/path/to/file"); // File | Binary file content to upload as a stream
         try {
             // uncomment the below to set overrides at the request level
             // StorageObject result = apiInstance.updateFileContents(id, contentLength, body).execute(opts);
@@ -447,7 +447,7 @@ public class FilesApiExample {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| The unique file identifier | |
 | **contentLength** | **Integer**| The size in bytes of the file to be uploaded | |
-| **body** | **byte[]**|  | |
+| **body** | **File**| Binary file content to upload as a stream | |
 
 ### Return type
 

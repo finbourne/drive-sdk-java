@@ -33,7 +33,7 @@ info:
     | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Drive API
-  version: 0.1.784
+  version: 0.1.794
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -136,8 +136,10 @@ paths:
         content:
           application/octet-stream:
             schema:
-              format: byte
+              description: Binary file content stream
+              format: binary
               type: string
+        description: Binary file content to upload as a stream
         required: true
       responses:
         "201":
@@ -553,8 +555,10 @@ paths:
         content:
           application/octet-stream:
             schema:
-              format: byte
+              description: Binary file content stream
+              format: binary
               type: string
+        description: Binary file content to upload as a stream
         required: true
       responses:
         "200":

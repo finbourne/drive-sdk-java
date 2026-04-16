@@ -74,11 +74,11 @@ public class FilesApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    private okhttp3.Call createFileCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createFileCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body, final ApiCallback _callback) throws ApiException {
         return createFileCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call createFileCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call createFileCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -138,7 +138,7 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createFileValidateBeforeCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call createFileValidateBeforeCall(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'xLusidDriveFilename' is set
         if (xLusidDriveFilename == null) {
             throw new ApiException("Missing the required parameter 'xLusidDriveFilename' when calling createFile(Async)");
@@ -164,19 +164,19 @@ public class FilesApi {
     }
 
 
-    private ApiResponse<StorageObject> createFileWithHttpInfo(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body) throws ApiException {
+    private ApiResponse<StorageObject> createFileWithHttpInfo(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body) throws ApiException {
         okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<StorageObject> createFileWithHttpInfo(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, ConfigurationOptions opts) throws ApiException {
+    private ApiResponse<StorageObject> createFileWithHttpInfo(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body, ConfigurationOptions opts) throws ApiException {
         okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call createFileAsync(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback<StorageObject> _callback) throws ApiException {
+    private okhttp3.Call createFileAsync(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body, final ApiCallback<StorageObject> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
@@ -184,7 +184,7 @@ public class FilesApi {
         return localVarCall;
     }
 
-    private okhttp3.Call createFileAsync(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call createFileAsync(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
 
         okhttp3.Call localVarCall = createFileValidateBeforeCall(xLusidDriveFilename, xLusidDrivePath, contentLength, body, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
@@ -196,9 +196,9 @@ public class FilesApi {
         private final String xLusidDriveFilename;
         private final String xLusidDrivePath;
         private final Integer contentLength;
-        private final byte[] body;
+        private final File body;
 
-        private APIcreateFileRequest(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body) {
+        private APIcreateFileRequest(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body) {
             this.xLusidDriveFilename = xLusidDriveFilename;
             this.xLusidDrivePath = xLusidDrivePath;
             this.contentLength = contentLength;
@@ -329,7 +329,7 @@ public class FilesApi {
      * @param xLusidDriveFilename File name. (required)
      * @param xLusidDrivePath File path. (required)
      * @param contentLength The size in bytes of the file to be uploaded (required)
-     * @param body  (required)
+     * @param body Binary file content to upload as a stream (required)
      * @return APIcreateFileRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -339,7 +339,7 @@ public class FilesApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public APIcreateFileRequest createFile(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, byte[] body) {
+    public APIcreateFileRequest createFile(String xLusidDriveFilename, String xLusidDrivePath, Integer contentLength, File body) {
         return new APIcreateFileRequest(xLusidDriveFilename, xLusidDrivePath, contentLength, body);
     }
     private okhttp3.Call deleteFileCall(String id, final ApiCallback _callback) throws ApiException {
@@ -1046,11 +1046,11 @@ public class FilesApi {
     public APIgetFileRequest getFile(String id) {
         return new APIgetFileRequest(id);
     }
-    private okhttp3.Call updateFileContentsCall(String id, Integer contentLength, byte[] body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateFileContentsCall(String id, Integer contentLength, File body, final ApiCallback _callback) throws ApiException {
         return updateFileContentsCall(id, contentLength, body,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call updateFileContentsCall(String id, Integer contentLength, byte[] body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call updateFileContentsCall(String id, Integer contentLength, File body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1103,7 +1103,7 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateFileContentsValidateBeforeCall(String id, Integer contentLength, byte[] body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call updateFileContentsValidateBeforeCall(String id, Integer contentLength, File body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling updateFileContents(Async)");
@@ -1124,19 +1124,19 @@ public class FilesApi {
     }
 
 
-    private ApiResponse<StorageObject> updateFileContentsWithHttpInfo(String id, Integer contentLength, byte[] body) throws ApiException {
+    private ApiResponse<StorageObject> updateFileContentsWithHttpInfo(String id, Integer contentLength, File body) throws ApiException {
         okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<StorageObject> updateFileContentsWithHttpInfo(String id, Integer contentLength, byte[] body, ConfigurationOptions opts) throws ApiException {
+    private ApiResponse<StorageObject> updateFileContentsWithHttpInfo(String id, Integer contentLength, File body, ConfigurationOptions opts) throws ApiException {
         okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, null, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call updateFileContentsAsync(String id, Integer contentLength, byte[] body, final ApiCallback<StorageObject> _callback) throws ApiException {
+    private okhttp3.Call updateFileContentsAsync(String id, Integer contentLength, File body, final ApiCallback<StorageObject> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
@@ -1144,7 +1144,7 @@ public class FilesApi {
         return localVarCall;
     }
 
-    private okhttp3.Call updateFileContentsAsync(String id, Integer contentLength, byte[] body, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call updateFileContentsAsync(String id, Integer contentLength, File body, final ApiCallback<StorageObject> _callback, ConfigurationOptions opts) throws ApiException {
 
         okhttp3.Call localVarCall = updateFileContentsValidateBeforeCall(id, contentLength, body, _callback, opts);
         Type localVarReturnType = new TypeToken<StorageObject>(){}.getType();
@@ -1155,9 +1155,9 @@ public class FilesApi {
     public class APIupdateFileContentsRequest {
         private final String id;
         private final Integer contentLength;
-        private final byte[] body;
+        private final File body;
 
-        private APIupdateFileContentsRequest(String id, Integer contentLength, byte[] body) {
+        private APIupdateFileContentsRequest(String id, Integer contentLength, File body) {
             this.id = id;
             this.contentLength = contentLength;
             this.body = body;
@@ -1286,7 +1286,7 @@ public class FilesApi {
      * 
      * @param id The unique file identifier (required)
      * @param contentLength The size in bytes of the file to be uploaded (required)
-     * @param body  (required)
+     * @param body Binary file content to upload as a stream (required)
      * @return APIupdateFileContentsRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1296,7 +1296,7 @@ public class FilesApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public APIupdateFileContentsRequest updateFileContents(String id, Integer contentLength, byte[] body) {
+    public APIupdateFileContentsRequest updateFileContents(String id, Integer contentLength, File body) {
         return new APIupdateFileContentsRequest(id, contentLength, body);
     }
     private okhttp3.Call updateFileMetadataCall(String id, UpdateFile updateFile, final ApiCallback _callback) throws ApiException {
