@@ -6,6 +6,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/drive*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ApplicationMetadataApi* | [**listAccessControlledResources**](docs/ApplicationMetadataApi.md#listaccesscontrolledresources) | **GET** /api/metadata/access/resources | [EARLY ACCESS] ListAccessControlledResources: Get resources available for access control
+*ApplicationMetadataApi* | [**listApiEndpoints**](docs/ApplicationMetadataApi.md#listapiendpoints) | **GET** /api/metadata/endpoints | ListApiEndpoints: Get the API endpoints available
 *FilesApi* | [**createFile**](docs/FilesApi.md#createfile) | **POST** /api/files | CreateFile: Uploads a file to Lusid Drive. If using an SDK, consider using the UploadAsStreamAsync function for larger files instead.
 *FilesApi* | [**deleteFile**](docs/FilesApi.md#deletefile) | **DELETE** /api/files/{id} | [EARLY ACCESS] DeleteFile: Deletes a file from Drive.
 *FilesApi* | [**downloadFile**](docs/FilesApi.md#downloadfile) | **GET** /api/files/{id}/contents | DownloadFile: Download the file from Drive.
@@ -28,6 +29,7 @@ Class | Method | HTTP request | Description
  - [AccessControlledAction](docs/AccessControlledAction.md)
  - [AccessControlledResource](docs/AccessControlledResource.md)
  - [ActionId](docs/ActionId.md)
+ - [ApiEndpoint](docs/ApiEndpoint.md)
  - [CreateFolder](docs/CreateFolder.md)
  - [IdSelectorDefinition](docs/IdSelectorDefinition.md)
  - [IdentifierPartSchema](docs/IdentifierPartSchema.md)
@@ -37,6 +39,7 @@ Class | Method | HTTP request | Description
  - [PagedResourceListOfStorageObject](docs/PagedResourceListOfStorageObject.md)
  - [ResourceListOfAccessControlledResource](docs/ResourceListOfAccessControlledResource.md)
  - [SearchBody](docs/SearchBody.md)
+ - [ServiceApiEndpoints](docs/ServiceApiEndpoints.md)
  - [StorageObject](docs/StorageObject.md)
  - [UpdateFile](docs/UpdateFile.md)
  - [UpdateFolder](docs/UpdateFolder.md)

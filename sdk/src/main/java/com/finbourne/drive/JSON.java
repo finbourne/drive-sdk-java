@@ -93,6 +93,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.AccessControlledAction.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.AccessControlledResource.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.ActionId.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.ApiEndpoint.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.CreateFolder.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.IdSelectorDefinition.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.IdentifierPartSchema.CustomTypeAdapterFactory());
@@ -102,6 +103,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.PagedResourceListOfStorageObject.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.ResourceListOfAccessControlledResource.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.SearchBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.ServiceApiEndpoints.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.StorageObject.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.UpdateFile.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.drive.model.UpdateFolder.CustomTypeAdapterFactory());
